@@ -283,8 +283,7 @@ namespace ard
 
     void Joint::setLinkedBody (CjrlBody& body)
     {
-      bodyShPtr_t bodyPtr (&body);
-      linkedBody_ = bodyPtr;
+      linkedBody_ = bodyShPtr_t (&body);
     }
 
   } // end of namespace rbdl.
