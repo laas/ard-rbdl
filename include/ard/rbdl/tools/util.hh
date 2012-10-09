@@ -38,6 +38,16 @@ namespace ard
       return false;
     }
 
+    template <class T>
+    inline T* getUnsafePointer (boost::weak_ptr<T> wkPtr)
+    {
+      boost::shared_ptr<T> shPtr = wkPtr.lock ();
+      if (shPtr)
+	return shPtr.get ();
+      else
+	return 0;
+    }
+
   } // end of namespace rbdl.
 } // end of namespace ard.
   

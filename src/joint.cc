@@ -107,7 +107,7 @@ namespace ard
 
     CjrlJoint* Joint::parentJoint () const
     {
-      return (parentJoint_.lock ()).get ();
+      return getUnsafePointer<joint_t> (parentJoint_);
     }
 
     void Joint::setParentJoint (jointShPtr_t joint)
@@ -119,7 +119,7 @@ namespace ard
       // Update vector of joints going starting from root joint.
       fromRootToThis_.clear ();
       fromRootToThis_.push_back (this);
-      jointPtr_t parentJoint = (parentJoint_.lock ()).get ();
+      jointPtr_t parentJoint = getUnsafePointer<joint_t> (parentJoint_);
       while (parentJoint != 0)
 	{
 	  fromRootToThis_.insert(fromRootToThis_.begin (), parentJoint);

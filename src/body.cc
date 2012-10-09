@@ -87,8 +87,7 @@ namespace ard
 
     const CjrlJoint* Body::joint () const
     {
-      
-      return (joint_.lock ()).get ();
+      return getUnsafePointer<joint_t> (joint_);
     }
 
   } // end of namespace rbdl.
