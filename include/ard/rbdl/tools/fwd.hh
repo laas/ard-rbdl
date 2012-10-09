@@ -26,9 +26,12 @@
 
 # include <rbdl/rbdl.h>
 
-/// \def Create typedefs from class.
+/// \def ARD_RBDL_DEFINE_TYPES(T, NAME)
 ///
-/// This macro defines new pointer and vector types.
+/// Create typedefs from class.
+///
+/// This macro defines new pointer and vector types from \a T and
+/// prefixes them with \a NAME.
 ///
 /// \param T class name
 /// \param Name desired name
