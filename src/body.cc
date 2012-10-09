@@ -90,7 +90,7 @@ namespace ard
     const CjrlJoint* Body::joint () const
     {
       
-      return &*(joint_.lock ());
+      return (joint_.lock ()).get ();
     }
 
   } // end of namespace rbdl.

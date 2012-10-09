@@ -110,7 +110,7 @@ namespace ard
 
     CjrlJoint* Joint::parentJoint () const
     {
-      return &*(parentJoint_.lock ());
+      return (parentJoint_.lock ()).get ();
     }
 
     void Joint::setParentJoint (jointShPtr_t joint)
@@ -122,7 +122,7 @@ namespace ard
       // Update vector of joints going starting from root joint.
       fromRootToThis_.clear ();
       fromRootToThis_.push_back (this);
-      jointPtr_t parentJoint = &*(parentJoint_.lock ());
+      jointPtr_t parentJoint = (parentJoint_.lock ()).get ();
       while (parentJoint != 0)
 	{
 	  fromRootToThis_.insert(fromRootToThis_.begin (), parentJoint);
@@ -153,7 +153,7 @@ namespace ard
     CjrlJoint* Joint::childJoint (unsigned int jointRank) const
     {
       assert (!!childJoints_[jointRank] && "Null pointer to joint.");
-      return &*childJoints_[jointRank];
+      return childJoints_[jointRank].get ();
     }
 
     rbdlJoint_t Joint::rbdlJoint () const
@@ -281,7 +281,7 @@ namespace ard
 
     CjrlBody* Joint::linkedBody () const
     {
-      return &*linkedBody_;
+      return linkedBody_.get ();
     }
 
     void Joint::setLinkedBody (CjrlBody& body)
