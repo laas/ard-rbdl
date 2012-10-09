@@ -33,7 +33,8 @@ namespace ard
 		const vector3d& com,
 		const matrix3d& inertia,
 		joint_t& joint) : 
-      rbdlBody_ (mass, com, inertia)
+      rbdlBody_ (mass, com, inertia),
+      joint_ ()
     {
       jointShPtr_t jointPtr (&joint);
       joint_ = jointWkPtr_t (jointPtr);
