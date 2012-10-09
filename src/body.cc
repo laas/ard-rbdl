@@ -32,12 +32,13 @@ namespace ard
     Body::Body (const double& mass,
 		const vector3d& com,
 		const matrix3d& inertia,
-		ardJoint_t& joint) : 
+		joint_t& joint) : 
+      boost::enable_shared_from_this<Body> (),
       rbdlBody_ (mass, com, inertia),
       joint_ ()
     {
-      ardJointShPtr_t jointPtr (&joint);
-      joint_ = ardJointWkPtr_t (jointPtr);
+      jointShPtr_t shPtr = joint.shared_from_this ();
+      joint_ = jointWkPtr_t (shPtr);
     }
 
     Body::~Body ()
@@ -87,7 +88,7 @@ namespace ard
 
     const CjrlJoint* Body::joint () const
     {
-      return getUnsafePointer<ardJoint_t> (joint_);
+      return getUnsafePointer (joint_);
     }
 
   } // end of namespace rbdl.

@@ -21,16 +21,22 @@
 #ifndef ARD_RBDL_MODEL_JOINT_HH
 # define ARD_RBDL_MODEL_JOINT_HH
 
+# include <boost/enable_shared_from_this.hpp>
+
 # include <rbdl/Joint.h>
 
+# include <ard/rbdl/tools/fwd.hh>
 # include <ard/rbdl/tools/types.hh>
+# include <ard/rbdl/model/body.hh>
 # include <abstract-robot-dynamics/joint.hh>
 
 namespace ard
 {
   namespace rbdl
   {
-    class Joint : public CjrlJoint
+    class Joint :
+      public CjrlJoint,
+      public boost::enable_shared_from_this<Joint>
     {
     public:
       /// \brief Default Constructor.
@@ -61,12 +67,6 @@ namespace ard
       /// getter. There is therefore no guarantee that the joint will
       /// still exist once the shared pointer has been deleted.
       virtual CjrlJoint* parentJoint () const;
-
-      /// \brief Set the parent joint.
-      /// \warning A shared pointer is created then deleted in this
-      /// getter. There is therefore no guarantee that the joint will
-      /// still exist once the shared pointer has been deleted.
-      virtual void setParentJoint (ardJointShPtr_t joint);
 
       /// \brief Add a child joint.
       virtual bool addChildJoint (CjrlJoint& joint);
@@ -276,17 +276,25 @@ namespace ard
       /// \brief Link a body to the joint.
       virtual void setLinkedBody (CjrlBody& inBody);
 
+    protected:
+      /// \brief Set the parent joint.
+      virtual void setParentJoint (jointShPtr_t joint);
+
+      /// \brief Add a child joint of type joint_t.
+      virtual bool addChildJoint (joint_t& joint);
+      
+      /// \brief Link a body to a joint.
+      void setLinkedBody (body_t& body);
+
     private:
       /// \brief Joint name attribute.
       std::string name_;
       /// \brief Parent joint attribute.
-      ardJointWkPtr_t parentJoint_;
+      jointWkPtr_t parentJoint_;
       /// \brief Child joints vector attribute.
-      ardJointShPtrs_t childJoints_;
+      jointShPtrs_t childJoints_;
       /// \brief Corresponding rbdl joint attribute.
       rbdlJoint_t rbdlJoint_;
-      /// \brief Joint vector from root to this joint.
-      ardJointPtrs_t fromRootToThis_;
       /// \brief Rank in configuration attribute.
       unsigned int rankInConfiguration_;
       /// \brief Joint transformation in world frame at construction.
@@ -315,7 +323,7 @@ namespace ard
       /// configuration.
       matrixNxP jacobian_;
       /// \brief Linked body attribute.
-      ardBodyShPtr_t linkedBody_;
+      bodyShPtr_t linkedBody_;
     };
   } // end of namespace rbdl.
 } // end of namespace ard.

@@ -24,8 +24,6 @@
 # include <boost/shared_ptr.hpp>
 # include <boost/weak_ptr.hpp>
 
-# include <rbdl/rbdl.h>
-
 /// \def ARD_RBDL_DEFINE_TYPES(T, NAME)
 ///
 /// Create typedefs from class.

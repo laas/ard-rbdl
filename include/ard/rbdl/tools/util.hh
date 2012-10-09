@@ -48,11 +48,11 @@ namespace ard
 	return 0;
     }
 
-    inline bool isJointInVector (const ardJoint_t& joint,
-				 const ardJointShPtrs_t& joints)
+    inline bool isJointInVector (const jointShPtr_t& joint,
+				 const jointShPtrs_t& joints)
     {
-      BOOST_FOREACH (ardJointShPtr_t joint_i, joints)
-	if (getUnsafePointer (joint_i) == &joint)
+      BOOST_FOREACH (jointShPtr_t joint_i, joints)
+	if (joint_i == joint)
 	  return true;
       return false;
     }

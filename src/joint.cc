@@ -30,11 +30,11 @@ namespace ard
   namespace rbdl
   {
     Joint::Joint () :
+      boost::enable_shared_from_this<Joint> (),
       name_ (),
       parentJoint_ (),
       childJoints_ (),
       rbdlJoint_ (),
-      fromRootToThis_ (),
       rankInConfiguration_ (),
       initialPosition_ (),
       currentTransformation_ (),
@@ -56,14 +56,21 @@ namespace ard
       acceleration_ (vector3d (0, 0, 0), vector3d (0, 0, 0))
     {
       name_ = joint.getName ();
-      ardJointShPtr_t parentJoint (joint.parentJoint ());
-      setParentJoint (parentJoint);
+      
+      jointPtr_t parentJointPtr
+	= dynamic_cast<jointPtr_t> (joint.parentJoint ());
+      if (parentJointPtr)
+	{
+	  jointShPtr_t parentJointShPtr = parentJointPtr->shared_from_this ();
+	  setParentJoint (parentJointShPtr);
+	}
+      else
+	throw std::runtime_error ("Null pointer to parent joint.");
 
       for (unsigned i = 0; i < joint.countChildJoints (); ++i)
 	addChildJoint (*(joint.childJoint (i)));
 
       rbdlJoint_ = joint.rbdlJoint ();
-      fromRootToThis_ = joint.jointsFromRootToThis ();
       rankInConfiguration_ = joint.rankInConfiguration ();
       initialPosition_ = joint.initialPosition ();
       currentTransformation_ = joint.currentTransformation ();
@@ -88,7 +95,13 @@ namespace ard
 	}
 
       jacobian_ = joint.jacobianJointWrtConfig ();
-      linkedBody_ = ardBodyShPtr_t (joint.linkedBody ());
+
+      bodyPtr_t linkedBodyPtr
+	= dynamic_cast<bodyPtr_t> (joint.linkedBody ());
+      if (linkedBodyPtr)
+	setLinkedBody (*linkedBodyPtr);
+      else
+	throw std::runtime_error ("Null pointer to linked body.");
     }
     
     Joint::~Joint ()
@@ -107,39 +120,18 @@ namespace ard
 
     CjrlJoint* Joint::parentJoint () const
     {
-      return getUnsafePointer<ardJoint_t> (parentJoint_);
-    }
-
-    void Joint::setParentJoint (ardJointShPtr_t joint)
-    {
-      assert (!!joint && "Null pointer to joint.");
-      ardJointWkPtr_t jointWkPtr (joint);
-      parentJoint_ = jointWkPtr;
-
-      // Update vector of joints going starting from root joint.
-      fromRootToThis_.clear ();
-      fromRootToThis_.push_back (this);
-      ardJointPtr_t parentJoint = getUnsafePointer<ardJoint_t> (parentJoint_);
-      while (parentJoint != 0)
-	{
-	  fromRootToThis_.insert(fromRootToThis_.begin (), parentJoint);
-	  parentJoint = parentJoint->parentJoint ();
-	}
+      return getUnsafePointer (parentJoint_);
     }
 
     bool Joint::addChildJoint (CjrlJoint& joint)
     {
-      if (!isJointInVector (joint, childJoints_))
-	{
-	  // Link joints in abstract robot dynamics. The rbdl joints
-	  // will be linked later during initialization.
-	  Joint* jointPtr = (Joint*)&joint;
-	  jointPtr->setParentJoint (ardJointShPtr_t (this));
-	  ardJointShPtr_t jointShPtr (jointPtr);
-	  childJoints_.push_back (jointShPtr);
-	  return true;
-	}
-      return false;
+      // Link joints in abstract robot dynamics. The rbdl joints
+      // will be linked later during initialization.
+      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (&joint);
+      if (jointPtr)
+	return addChildJoint (*jointPtr);
+      else
+	return false;
     }
 
     unsigned int Joint::countChildJoints() const
@@ -160,7 +152,20 @@ namespace ard
 
     std::vector<CjrlJoint*> Joint::jointsFromRootToThis () const
     {
-      return fromRootToThis_;
+      ardJointPtrs_t fromRootToThis;
+
+      // Update vector of joints going starting from root joint.
+      // Const cast this joint pointer because method returns a vector
+      // of non-const pointers.
+      fromRootToThis.push_back (const_cast<jointPtr_t> (this));
+      ardJointPtr_t parentJoint = getUnsafePointer (parentJoint_);
+      while (parentJoint != 0)
+	{
+	  fromRootToThis.insert(fromRootToThis.begin (), parentJoint);
+	  parentJoint = parentJoint->parentJoint ();
+	}
+      
+      return fromRootToThis;
     }
 
     unsigned int Joint::rankInConfiguration () const
@@ -278,12 +283,39 @@ namespace ard
 
     CjrlBody* Joint::linkedBody () const
     {
-      return linkedBody_.get ();
+      return getUnsafePointer (linkedBody_);;
     }
 
     void Joint::setLinkedBody (CjrlBody& body)
     {
-      linkedBody_ = ardBodyShPtr_t (&body);
+      bodyPtr_t bodyPtr = dynamic_cast<bodyPtr_t> (&body);
+      if (bodyPtr)
+	return setLinkedBody (*bodyPtr);
+      else
+	throw std::runtime_error ("Null pointer to body.");
+    }
+
+    void Joint::setParentJoint (jointShPtr_t joint)
+    {
+      assert (!!joint && "Null pointer to joint.");
+      parentJoint_ = jointWkPtr_t (joint);
+    }
+
+    bool Joint::addChildJoint (joint_t& joint)
+    {
+      jointShPtr_t jointShPtr = joint.shared_from_this ();
+      if (!isJointInVector (jointShPtr, childJoints_))
+	{
+	  jointShPtr->setParentJoint (shared_from_this ());
+	  childJoints_.push_back (jointShPtr);
+	  return true;
+	}
+      return false;
+    }
+
+    void Joint::setLinkedBody (body_t& body)
+    {
+      linkedBody_ = body.shared_from_this ();
     }
 
   } // end of namespace rbdl.

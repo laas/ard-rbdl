@@ -21,16 +21,22 @@
 #ifndef ARD_RBDL_MODEL_BODY_HH
 # define ARD_RBDL_MODEL_BODY_HH
 
+# include <boost/enable_shared_from_this.hpp>
+
 # include <rbdl/Body.h>
 
+# include <ard/rbdl/tools/fwd.hh>
 # include <ard/rbdl/tools/types.hh>
+# include <ard/rbdl/model/joint.hh>
 # include <abstract-robot-dynamics/body.hh>
 
 namespace ard
 {
   namespace rbdl
   {
-    class Body : public CjrlBody
+    class Body :
+      public CjrlBody,
+      public boost::enable_shared_from_this<Body>
     {
     public:
       /// \brief Constructor.
@@ -42,7 +48,7 @@ namespace ard
       Body (const double& mass,
 	    const vector3d& com,
 	    const matrix3d& inertia,
-	    ardJoint_t& joint);
+	    joint_t& joint);
 
       /// \brief Destructor.
       virtual ~Body ();
@@ -79,7 +85,7 @@ namespace ard
       /// \brief rbdl body attribute.
       rbdlBody_t rbdlBody_;
       /// \brief Weak pointer to parent joint attribute.
-      ardJointWkPtr_t joint_;
+      jointWkPtr_t joint_;
     };
   } // end of namespace rbdl.
 } // end of namespace ard.
