@@ -63,6 +63,9 @@ namespace ard
       virtual CjrlJoint* parentJoint () const;
 
       /// \brief Set the parent joint.
+      /// \warning A shared pointer is created then deleted in this
+      /// getter. There is therefore no guarantee that the joint will
+      /// still exist once the shared pointer has been deleted.
       virtual void setParentJoint (jointShPtr_t joint);
 
       /// \brief Add a child joint.
