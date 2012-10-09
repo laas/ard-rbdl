@@ -23,7 +23,7 @@
 
 # include <rbdl/Body.h>
 
-# include "ard/rbdl/tools/types.hh"
+# include <ard/rbdl/tools/types.hh>
 # include <abstract-robot-dynamics/body.hh>
 
 namespace ard

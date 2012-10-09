@@ -23,7 +23,7 @@
 
 # include <rbdl/Joint.h>
 
-# include "ard/rbdl/tools/types.hh"
+# include <ard/rbdl/tools/types.hh>
 # include <abstract-robot-dynamics/joint.hh>
 
 namespace ard

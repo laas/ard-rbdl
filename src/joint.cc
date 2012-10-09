@@ -22,8 +22,8 @@
 
 #include <stdexcept>
 
-#include "ard/rbdl/tools/util.hh"
-#include "ard/rbdl/model/joint.hh"
+#include <ard/rbdl/tools/util.hh>
+#include <ard/rbdl/model/joint.hh>
 
 namespace ard
 {
