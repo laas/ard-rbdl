@@ -150,7 +150,7 @@ namespace ard
     CjrlJoint* Joint::childJoint (unsigned int jointRank) const
     {
       assert (!!childJoints_[jointRank] && "Null pointer to joint.");
-      return childJoints_[jointRank].get ();
+      return getUnsafePointer (childJoints_[jointRank]);
     }
 
     rbdlJoint_t Joint::rbdlJoint () const

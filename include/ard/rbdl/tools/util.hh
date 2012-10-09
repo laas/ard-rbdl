@@ -29,15 +29,6 @@ namespace ard
 {
   namespace rbdl
   {
-    inline bool isJointInVector (const joint_t& joint,
-				 const jointShPtrs_t& joints)
-    {
-      BOOST_FOREACH (jointShPtr_t joint_i, joints)
-	if (joint_i.get () == &joint)
-	  return true;
-      return false;
-    }
-
     template <class T>
     inline T* getUnsafePointer (boost::weak_ptr<T> wkPtr)
     {
@@ -46,6 +37,24 @@ namespace ard
 	return shPtr.get ();
       else
 	return 0;
+    }
+
+    template <class T>
+    inline T* getUnsafePointer (boost::shared_ptr<T> shPtr)
+    {
+      if (shPtr)
+	return shPtr.get ();
+      else
+	return 0;
+    }
+
+    inline bool isJointInVector (const joint_t& joint,
+				 const jointShPtrs_t& joints)
+    {
+      BOOST_FOREACH (jointShPtr_t joint_i, joints)
+	if (getUnsafePointer (joint_i) == &joint)
+	  return true;
+      return false;
     }
 
   } // end of namespace rbdl.
