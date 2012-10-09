@@ -17,11 +17,8 @@
 // <http://www.gnu.org/licenses/>.
 
 
-/**
- * \file src/model/joint.cc
- *
- * \brief Implementation of Joint.
- */
+/// \file src/model/joint.cc
+/// \brief Implementation of Joint.
 
 #include <stdexcept>
 

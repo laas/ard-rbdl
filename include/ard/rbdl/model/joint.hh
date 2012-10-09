@@ -16,9 +16,7 @@
 // License along with ard-rbdl.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/**
- * \brief Declaration of Joint class.
- */
+/// \brief Declaration of Joint class.
 
 #ifndef ARD_RBDL_MODEL_JOINT_HH_
 # define ARD_RBDL_MODEL_JOINT_HH_

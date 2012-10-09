@@ -16,9 +16,7 @@
 // License along with ard-rbdl.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/**
- * \brief Declaration of Body class.
- */
+/// \brief Declaration of Body class.
 
 #ifndef ARD_RBDL_MODEL_BODY_HH_
 # define ARD_RBDL_MODEL_BODY_HH_

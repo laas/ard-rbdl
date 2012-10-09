@@ -16,9 +16,7 @@
 // License along with ard-rbdl.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/**
- * \brief Declarations of types.
- */
+/// \brief Declarations of types.
 
 #ifndef ARD_RBDL_TYPES_HH
 # define ARD_RBDL_TYPES_HH

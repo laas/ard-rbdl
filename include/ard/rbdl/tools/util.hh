@@ -16,9 +16,7 @@
 // License along with ard-rbdl.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/**
- * \brief Declarations of utility functions.
- */
+/// \brief Declarations of utility functions.
 
 #ifndef ARD_RBDL_UTIL_HH
 # define ARD_RBDL_UTIL_HH

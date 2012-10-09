@@ -17,11 +17,8 @@
 // <http://www.gnu.org/licenses/>.
 
 
-/**
- * \file src/model/body.cc
- *
- * \brief Implementation of Body.
- */
+/// \file src/model/body.cc
+/// \brief Implementation of Body.
 
 #include <stdexcept>
 
