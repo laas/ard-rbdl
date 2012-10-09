@@ -57,6 +57,9 @@ namespace ard
       /// \{
 
       /// \brief Get a pointer to the parent joint (if any).
+      /// \warning A shared pointer is created then deleted in this
+      /// getter. There is therefore no guarantee that the joint will
+      /// still exist once the shared pointer has been deleted.
       virtual CjrlJoint* parentJoint () const;
 
       /// \brief Set the parent joint.

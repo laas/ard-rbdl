@@ -70,6 +70,9 @@ namespace ard
 
       /// \brief Get const pointer to the joint the body is attached
       /// to.
+      /// \warning A shared pointer is created then deleted in this
+      /// getter. There is therefore no guarantee that the joint will
+      /// still exist once the shared pointer has been deleted.
       virtual const CjrlJoint* joint () const;
 	
     private:
