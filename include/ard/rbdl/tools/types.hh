@@ -35,31 +35,23 @@ typedef RigidBodyDynamics::Math::MatrixNd matrixNxP;
 
 # include <abstract-robot-dynamics/abstract-robot-dynamics.hh>
 
+# include <ard/rbdl/tools/fwd.hh>
+
 namespace ard
 {
   namespace rbdl
   {
     // RBDL typedefs.
-    typedef RigidBodyDynamics::Joint rbdlJoint_t;
-    typedef rbdlJoint_t* rbdlJointPtr_t;
-    typedef boost::shared_ptr<rbdlJoint_t> rbdlJointShPtr_t;
-    typedef boost::weak_ptr<rbdlJoint_t> rbdlJointWkPtr_t;
-    typedef std::vector<rbdlJointShPtr_t> rbdlJointShPtrs_t;
-    typedef RigidBodyDynamics::Body rbdlBody_t;
+    ARD_RBDL_DEFINE_TYPES (RigidBodyDynamics::Joint, rbdlJoint);
+    ARD_RBDL_DEFINE_TYPES (RigidBodyDynamics::Body, rbdlBody);
+    ARD_RBDL_DEFINE_TYPES (RigidBodyDynamics::Model, rbdlModel);
     
     // Abstract robot dynamics typedefs.
-    typedef CjrlJoint joint_t;
-    typedef joint_t* jointPtr_t;
-    typedef std::vector<jointPtr_t> jointPtrs_t;
-    typedef boost::shared_ptr<joint_t> jointShPtr_t;
-    typedef boost::weak_ptr<joint_t> jointWkPtr_t;
-    typedef std::vector<jointShPtr_t> jointShPtrs_t;
-    typedef CjrlRigidVelocity rigidVelocity_t;
-    typedef CjrlRigidAcceleration rigidAcceleration_t;
-    typedef CjrlBody body_t;
-    typedef body_t* bodyPtr_t;
-    typedef boost::shared_ptr<body_t> bodyShPtr_t;
-    typedef boost::weak_ptr<body_t> bodyWkPtr_t;
+    ARD_RBDL_DEFINE_TYPES (CjrlJoint, ardJoint);
+    ARD_RBDL_DEFINE_TYPES (CjrlBody, ardBody);
+    typedef CjrlRigidVelocity ardVelocity_t;
+    typedef CjrlRigidAcceleration ardAcceleration_t;
+
   } // end of namespace rbdl.
 } // end of namespace ard.
   

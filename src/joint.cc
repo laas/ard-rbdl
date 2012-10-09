@@ -56,7 +56,7 @@ namespace ard
       acceleration_ (vector3d (0, 0, 0), vector3d (0, 0, 0))
     {
       name_ = joint.getName ();
-      jointShPtr_t parentJoint (joint.parentJoint ());
+      ardJointShPtr_t parentJoint (joint.parentJoint ());
       setParentJoint (parentJoint);
 
       for (unsigned i = 0; i < joint.countChildJoints (); ++i)
@@ -88,7 +88,7 @@ namespace ard
 	}
 
       jacobian_ = joint.jacobianJointWrtConfig ();
-      linkedBody_ = bodyShPtr_t (joint.linkedBody ());
+      linkedBody_ = ardBodyShPtr_t (joint.linkedBody ());
     }
     
     Joint::~Joint ()
@@ -107,19 +107,19 @@ namespace ard
 
     CjrlJoint* Joint::parentJoint () const
     {
-      return getUnsafePointer<joint_t> (parentJoint_);
+      return getUnsafePointer<ardJoint_t> (parentJoint_);
     }
 
-    void Joint::setParentJoint (jointShPtr_t joint)
+    void Joint::setParentJoint (ardJointShPtr_t joint)
     {
       assert (!!joint && "Null pointer to joint.");
-      jointWkPtr_t jointWkPtr (joint);
+      ardJointWkPtr_t jointWkPtr (joint);
       parentJoint_ = jointWkPtr;
 
       // Update vector of joints going starting from root joint.
       fromRootToThis_.clear ();
       fromRootToThis_.push_back (this);
-      jointPtr_t parentJoint = getUnsafePointer<joint_t> (parentJoint_);
+      ardJointPtr_t parentJoint = getUnsafePointer<ardJoint_t> (parentJoint_);
       while (parentJoint != 0)
 	{
 	  fromRootToThis_.insert(fromRootToThis_.begin (), parentJoint);
@@ -134,8 +134,8 @@ namespace ard
 	  // Link joints in abstract robot dynamics. The rbdl joints
 	  // will be linked later during initialization.
 	  Joint* jointPtr = (Joint*)&joint;
-	  jointPtr->setParentJoint (jointShPtr_t (this));
-	  jointShPtr_t jointShPtr (jointPtr);
+	  jointPtr->setParentJoint (ardJointShPtr_t (this));
+	  ardJointShPtr_t jointShPtr (jointPtr);
 	  childJoints_.push_back (jointShPtr);
 	  return true;
 	}
@@ -283,7 +283,7 @@ namespace ard
 
     void Joint::setLinkedBody (CjrlBody& body)
     {
-      linkedBody_ = bodyShPtr_t (&body);
+      linkedBody_ = ardBodyShPtr_t (&body);
     }
 
   } // end of namespace rbdl.

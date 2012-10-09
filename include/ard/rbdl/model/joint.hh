@@ -66,7 +66,7 @@ namespace ard
       /// \warning A shared pointer is created then deleted in this
       /// getter. There is therefore no guarantee that the joint will
       /// still exist once the shared pointer has been deleted.
-      virtual void setParentJoint (jointShPtr_t joint);
+      virtual void setParentJoint (ardJointShPtr_t joint);
 
       /// \brief Add a child joint.
       virtual bool addChildJoint (CjrlJoint& joint);
@@ -280,13 +280,13 @@ namespace ard
       /// \brief Joint name attribute.
       std::string name_;
       /// \brief Parent joint attribute.
-      jointWkPtr_t parentJoint_;
+      ardJointWkPtr_t parentJoint_;
       /// \brief Child joints vector attribute.
-      jointShPtrs_t childJoints_;
+      ardJointShPtrs_t childJoints_;
       /// \brief Corresponding rbdl joint attribute.
       rbdlJoint_t rbdlJoint_;
       /// \brief Joint vector from root to this joint.
-      jointPtrs_t fromRootToThis_;
+      ardJointPtrs_t fromRootToThis_;
       /// \brief Rank in configuration attribute.
       unsigned int rankInConfiguration_;
       /// \brief Joint transformation in world frame at construction.
@@ -294,9 +294,9 @@ namespace ard
       /// \brief Joint current transformation attribute.
       matrix4d currentTransformation_;
       /// \brief Joint velocity attribute.
-      rigidVelocity_t velocity_;
+      ardVelocity_t velocity_;
       /// \brief Joint acceleration attribute.
-      rigidAcceleration_t acceleration_;
+      ardAcceleration_t acceleration_;
       /// \brief Number of dofs attribute.
       unsigned int numberDof_;
       /// \brief Lower bounds attribute.
@@ -315,7 +315,7 @@ namespace ard
       /// configuration.
       matrixNxP jacobian_;
       /// \brief Linked body attribute.
-      bodyShPtr_t linkedBody_;
+      ardBodyShPtr_t linkedBody_;
     };
   } // end of namespace rbdl.
 } // end of namespace ard.

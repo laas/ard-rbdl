@@ -42,7 +42,7 @@ namespace ard
       Body (const double& mass,
 	    const vector3d& com,
 	    const matrix3d& inertia,
-	    joint_t& joint);
+	    ardJoint_t& joint);
 
       /// \brief Destructor.
       virtual ~Body ();
@@ -79,7 +79,7 @@ namespace ard
       /// \brief rbdl body attribute.
       rbdlBody_t rbdlBody_;
       /// \brief Weak pointer to parent joint attribute.
-      jointWkPtr_t joint_;
+      ardJointWkPtr_t joint_;
     };
   } // end of namespace rbdl.
 } // end of namespace ard.

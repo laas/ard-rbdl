@@ -16,48 +16,38 @@
 // License along with ard-rbdl.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/// \brief Declarations of utility functions.
+/// \brief Declarations of types.
 
-#ifndef ARD_RBDL_UTIL_HH
-# define ARD_RBDL_UTIL_HH
+#ifndef ARD_RBDL_FWD_HH
+# define ARD_RBDL_FWD_HH
 
-# include <boost/foreach.hpp>
+# include <boost/shared_ptr.hpp>
+# include <boost/weak_ptr.hpp>
 
-# include "ard/rbdl/tools/types.hh"
+# include <rbdl/rbdl.h>
+
+/// \def Create typedefs from class.
+///
+/// This macro defines new pointer and vector types.
+///
+/// \param T class name
+/// \param Name desired name
+# define ARD_RBDL_DEFINE_TYPES(T, NAME)				\
+  typedef T NAME##_t;						\
+  typedef T* NAME##Ptr_t;					\
+  typedef boost::shared_ptr<T> NAME##ShPtr_t;			\
+  typedef boost::weak_ptr<T> NAME##WkPtr_t;			\
+  typedef std::vector<T> NAME##s_t;				\
+  typedef std::vector<T*> NAME##Ptrs_t;				\
+  typedef std::vector<boost::shared_ptr<T> > NAME##ShPtrs_t;	\
+  typedef std::vector<boost::weak_ptr<T> > NAME##WkPtrs_t
 
 namespace ard
 {
   namespace rbdl
   {
-    template <class T>
-    inline T* getUnsafePointer (boost::weak_ptr<T> wkPtr)
-    {
-      boost::shared_ptr<T> shPtr = wkPtr.lock ();
-      if (shPtr)
-	return shPtr.get ();
-      else
-	return 0;
-    }
-
-    template <class T>
-    inline T* getUnsafePointer (boost::shared_ptr<T> shPtr)
-    {
-      if (shPtr)
-	return shPtr.get ();
-      else
-	return 0;
-    }
-
-    inline bool isJointInVector (const ardJoint_t& joint,
-				 const ardJointShPtrs_t& joints)
-    {
-      BOOST_FOREACH (ardJointShPtr_t joint_i, joints)
-	if (getUnsafePointer (joint_i) == &joint)
-	  return true;
-      return false;
-    }
 
   } // end of namespace rbdl.
 } // end of namespace ard.
   
-#endif //! ARD_RBDL_UTIL_HH
+#endif //! ARD_RBDL_FWD_HH
