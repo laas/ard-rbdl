@@ -18,8 +18,8 @@
 
 /// \brief Declaration of Joint class.
 
-#ifndef ARD_RBDL_MODEL_JOINT_HH_
-# define ARD_RBDL_MODEL_JOINT_HH_
+#ifndef ARD_RBDL_MODEL_JOINT_HH
+# define ARD_RBDL_MODEL_JOINT_HH
 
 # include <rbdl/Joint.h>
 
@@ -314,4 +314,4 @@ namespace ard
   } // end of namespace rbdl.
 } // end of namespace ard.
 
-#endif //! ARD_RBDL_MODEL_JOINT_HH_
+#endif //! ARD_RBDL_MODEL_JOINT_HH

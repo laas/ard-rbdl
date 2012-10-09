@@ -18,8 +18,8 @@
 
 /// \brief Declaration of Body class.
 
-#ifndef ARD_RBDL_MODEL_BODY_HH_
-# define ARD_RBDL_MODEL_BODY_HH_
+#ifndef ARD_RBDL_MODEL_BODY_HH
+# define ARD_RBDL_MODEL_BODY_HH
 
 # include <rbdl/Body.h>
 
