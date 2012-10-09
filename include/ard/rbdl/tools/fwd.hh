@@ -49,6 +49,10 @@ namespace ard
 {
   namespace rbdl
   {
+    class Joint;
+    ARD_RBDL_DEFINE_TYPES (Joint, joint);
+    class Body;
+    ARD_RBDL_DEFINE_TYPES (Body, body);
 
   } // end of namespace rbdl.
 } // end of namespace ard.
