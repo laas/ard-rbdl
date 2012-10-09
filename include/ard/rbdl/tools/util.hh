@@ -35,7 +35,7 @@ namespace ard
 				 const jointShPtrs_t& joints)
     {
       BOOST_FOREACH (jointShPtr_t joint_i, joints)
-	if (joint_i->getName () == joint.getName ())
+	if (joint_i.get () == &joint)
 	  return true;
       return false;
     }
