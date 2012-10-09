@@ -51,6 +51,8 @@ namespace ard
     ARD_RBDL_DEFINE_TYPES (Joint, joint);
     class Body;
     ARD_RBDL_DEFINE_TYPES (Body, body);
+    class DynamicRobot;
+    ARD_RBDL_DEFINE_TYPES (DynamicRobot, dynamicRobot);
 
   } // end of namespace rbdl.
 } // end of namespace ard.
