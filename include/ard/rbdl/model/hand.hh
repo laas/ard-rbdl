@@ -100,10 +100,15 @@ namespace ard
       virtual void setPalmNormal (const vector3d& inPalmNormal);
 
     private:
+      // Associated wrist joint attribute.
       jointWkPtr_t wristJoint_;
+      // Hand frame center attribute.
       vector3d center_;
+      // Thumb axis attribute.
       vector3d thumbAxis_;
+      // Forefinger axis attribute.
       vector3d foreFingerAxis_;
+      // Palm normal axis attribute.
       vector3d palmNormal_;
     };
 
