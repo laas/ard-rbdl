@@ -49,6 +49,10 @@ namespace ard
     // Abstract robot dynamics typedefs.
     ARD_RBDL_DEFINE_TYPES (CjrlJoint, ardJoint);
     ARD_RBDL_DEFINE_TYPES (CjrlBody, ardBody);
+    ARD_RBDL_DEFINE_TYPES (CjrlDynamicRobot, ardDynamicRobot);
+    ARD_RBDL_DEFINE_TYPES (CjrlHand, ardHand);
+    ARD_RBDL_DEFINE_TYPES (CjrlFoot, ardFoot);
+    ARD_RBDL_DEFINE_TYPES (CjrlHumanoidDynamicRobot, ardHumanoidDynamicRobot);
     typedef CjrlRigidVelocity ardVelocity_t;
     typedef CjrlRigidAcceleration ardAcceleration_t;
 
