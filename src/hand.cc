@@ -39,6 +39,16 @@ namespace ard
     {
     }
 
+    Hand::Hand (const jointShPtr_t& wrist) :
+      boost::enable_shared_from_this<Hand> (),
+      wristJoint_ (wrist),
+      center_ (),
+      thumbAxis_ (),
+      foreFingerAxis_ (),
+      palmNormal_ ()
+    {
+    }
+
     Hand::~Hand ()
     {
     }

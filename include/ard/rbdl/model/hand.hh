@@ -41,6 +41,11 @@ namespace ard
       /// \brief Default constructor.
       Hand ();
 
+      /// \brief Create hand with associated wrist joint.
+      ///
+      /// \param wrist associated wrist joint
+      Hand (const jointShPtr_t& wrist);
+
       /// \brief Destructor.
       virtual ~Hand ();
 
