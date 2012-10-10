@@ -110,4 +110,4 @@ namespace ard
   } // end of namespace rbdl.
 } // end of namespace ard.
 
-#endif //! ARD_RBDL_MODEL_JOINT_HH
+#endif //! ARD_RBDL_MODEL_HAND_HH
