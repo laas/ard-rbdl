@@ -58,6 +58,11 @@ namespace ard
     {
     }
 
+    bool DynamicRobot::initialize ()
+    {
+      throw std::runtime_error ("Method not supported.");
+    }
+
     void DynamicRobot::rootJoint (CjrlJoint& joint)
     {
       jointPtr_t ptr = dynamic_cast<jointPtr_t> (&joint);
