@@ -89,6 +89,9 @@ namespace ard
       rbdlBody_t rbdlBody_;
       /// \brief Weak pointer to parent joint attribute.
       jointWkPtr_t joint_;
+
+    public:
+      EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     };
   } // end of namespace rbdl.
 } // end of namespace ard.

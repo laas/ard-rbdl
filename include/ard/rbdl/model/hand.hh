@@ -115,6 +115,9 @@ namespace ard
       vector3d foreFingerAxis_;
       // Palm normal axis attribute.
       vector3d palmNormal_;
+
+    public:
+      EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     };
 
   } // end of namespace rbdl.

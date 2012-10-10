@@ -450,6 +450,9 @@ namespace ard
       vector3d gazeDirection_;
       /// \brief Zero moment point attribute.
       vector3d zeroMomentPoint_;
+
+    public:
+      EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     };
 
   } // end of namespace rbdl.

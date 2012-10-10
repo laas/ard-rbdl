@@ -86,6 +86,9 @@ namespace ard
       double soleWidth_;
       // Ankle position in local frame attribute.
       vector3d ankleInLocalFrame_;
+
+    public:
+      EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     };
 
   } // end of namespace rbdl.

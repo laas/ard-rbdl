@@ -350,6 +350,9 @@ namespace ard
       matrixNxP inertiaMatrix_;
       /// \brief actuated joints attribute.
       jointWkPtrs_t actuatedJoints_;
+
+    public:
+      EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     };
 
   } // end of namespace rbdl.

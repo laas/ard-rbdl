@@ -330,6 +330,9 @@ namespace ard
       matrixNxP jacobian_;
       /// \brief Linked body attribute.
       bodyShPtr_t linkedBody_;
+
+    public:
+      EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     };
   } // end of namespace rbdl.
 } // end of namespace ard.
