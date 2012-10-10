@@ -32,8 +32,8 @@ namespace ard
   namespace rbdl
   {
     HumanoidDynamicRobot::HumanoidDynamicRobot () :
-      DynamicRobot (),
       boost::enable_shared_from_this<HumanoidDynamicRobot> (),
+      dynamicRobot_ (),
       waist_ (),
       chest_ (),
       leftWrist_ (),
@@ -55,6 +55,264 @@ namespace ard
 
     HumanoidDynamicRobot::~HumanoidDynamicRobot ()
     {
+    }
+
+    bool HumanoidDynamicRobot::initialize ()
+    {
+      return dynamicRobot_->initialize ();
+    }
+
+    void HumanoidDynamicRobot::rootJoint (CjrlJoint& joint)
+    {
+      return dynamicRobot_->rootJoint (joint);
+    }
+
+    CjrlJoint* HumanoidDynamicRobot::rootJoint () const
+    {
+      return dynamicRobot_->rootJoint ();
+    }
+
+    std::vector<CjrlJoint*> HumanoidDynamicRobot::jointVector ()
+    {
+      return dynamicRobot_->jointVector ();
+    }
+
+    std::vector<CjrlJoint*>
+    HumanoidDynamicRobot::jointsBetween (const CjrlJoint& startJoint,
+					 const CjrlJoint& endJoint) const
+    {
+      return dynamicRobot_->jointsBetween (startJoint, endJoint);
+    }
+
+    double
+    HumanoidDynamicRobot::upperBoundDof (unsigned int rankInConfiguration)
+    {
+      return dynamicRobot_->upperBoundDof (rankInConfiguration);
+    }
+
+    double
+    HumanoidDynamicRobot::lowerBoundDof (unsigned int rankInConfiguration)
+    {
+      return dynamicRobot_->lowerBoundDof (rankInConfiguration);
+    }
+
+    double
+    HumanoidDynamicRobot::upperBoundDof (unsigned int rankInConfiguration,
+					 const vectorN& config)
+    {
+      return dynamicRobot_->upperBoundDof (rankInConfiguration, config);
+    }
+
+    double
+    HumanoidDynamicRobot::lowerBoundDof (unsigned int rankInConfiguration,
+					 const vectorN& config)
+    {
+      return dynamicRobot_->lowerBoundDof (rankInConfiguration, config);
+    }
+
+    unsigned int HumanoidDynamicRobot::numberDof () const
+    {
+      return dynamicRobot_->numberDof ();
+    }
+
+    void
+    HumanoidDynamicRobot::setJointOrderInConfig (std::vector<CjrlJoint*> jointVector)
+    {
+      return dynamicRobot_->setJointOrderInConfig (jointVector);
+    }
+
+    bool HumanoidDynamicRobot::currentConfiguration (const vectorN& config)
+    {
+      return dynamicRobot_->currentConfiguration (config);
+    }
+
+    const vectorN& HumanoidDynamicRobot::currentConfiguration () const
+    {
+      return dynamicRobot_->currentConfiguration ();
+    }
+
+    bool HumanoidDynamicRobot::currentVelocity (const vectorN& velocity)
+    {
+      return dynamicRobot_->currentVelocity (velocity);
+    }
+
+    const vectorN& HumanoidDynamicRobot::currentVelocity () const
+    {
+      return dynamicRobot_->currentVelocity ();
+    }
+
+    bool HumanoidDynamicRobot::currentAcceleration (const vectorN& acceleration)
+    {
+      return dynamicRobot_->currentAcceleration (acceleration);
+    }
+
+    const vectorN& HumanoidDynamicRobot::currentAcceleration () const
+    {
+      return dynamicRobot_->currentAcceleration ();
+    }
+
+    const matrixNxP& HumanoidDynamicRobot::currentForces () const
+    {
+      return dynamicRobot_->currentForces ();
+    }
+
+    const matrixNxP& HumanoidDynamicRobot::currentTorques () const
+    {
+      return dynamicRobot_->currentTorques ();
+    }
+
+    const vectorN& HumanoidDynamicRobot::currentJointTorques () const
+    {
+      return dynamicRobot_->currentJointTorques ();
+    }
+
+    bool HumanoidDynamicRobot::computeForwardKinematics ()
+    {
+      return dynamicRobot_->computeForwardKinematics ();
+      // FIXME Add Zmp computation.
+    }
+
+    bool HumanoidDynamicRobot::computeCenterOfMassDynamics ()
+    {
+      return dynamicRobot_->computeCenterOfMassDynamics ();
+    }
+
+    const vector3d& HumanoidDynamicRobot::positionCenterOfMass () const
+    {
+      return dynamicRobot_->positionCenterOfMass ();
+    }
+
+    const vector3d& HumanoidDynamicRobot::velocityCenterOfMass ()
+    {
+      return dynamicRobot_->velocityCenterOfMass ();
+    }
+
+    const vector3d& HumanoidDynamicRobot::accelerationCenterOfMass ()
+    {
+      return dynamicRobot_->accelerationCenterOfMass ();
+    }
+
+    const vector3d& HumanoidDynamicRobot::linearMomentumRobot ()
+    {
+      return dynamicRobot_->linearMomentumRobot ();
+    }
+
+    const vector3d& HumanoidDynamicRobot::derivativeLinearMomentum ()
+    {
+      return dynamicRobot_->derivativeLinearMomentum ();
+    }
+
+    const vector3d& HumanoidDynamicRobot::angularMomentumRobot ()
+    {
+      return dynamicRobot_->angularMomentumRobot ();
+    }
+
+    const vector3d& HumanoidDynamicRobot::derivativeAngularMomentum ()
+    {
+      return dynamicRobot_->derivativeAngularMomentum ();
+    }
+
+    double HumanoidDynamicRobot::mass () const
+    {
+      return dynamicRobot_->mass ();
+    }
+
+    bool HumanoidDynamicRobot::isSupported (const std::string& key)
+    {
+      return dynamicRobot_->isSupported (key);
+    }
+
+    bool HumanoidDynamicRobot::getProperty (const std::string & key,
+					    std::string& value) const
+    {
+      return dynamicRobot_->getProperty (key, value);
+    }
+
+    bool HumanoidDynamicRobot::setProperty (std::string& key,
+					    const std::string& value)
+    {
+      return dynamicRobot_->setProperty (key, value);
+    }
+
+    bool
+    HumanoidDynamicRobot::getJacobian (const CjrlJoint& inStartJoint,
+				       const CjrlJoint& inEndJoint,
+				       const vector3d& inFrameLocalPosition,
+				       matrixNxP& outjacobian,
+				       unsigned int offset,
+				       bool inIncludeStartFreeFlyer)
+    {
+      return dynamicRobot_->getJacobian (inStartJoint,
+				  inEndJoint,
+				  inFrameLocalPosition,
+				  outjacobian,
+				  offset,
+				  inIncludeStartFreeFlyer);
+    }
+
+    bool
+    HumanoidDynamicRobot::getPositionJacobian
+    (const CjrlJoint& inStartJoint,
+     const CjrlJoint& inEndJoint,
+     const vector3d& inFrameLocalPosition,
+     matrixNxP& outjacobian,
+     unsigned int offset,
+     bool inIncludeStartFreeFlyer)
+    {
+      return dynamicRobot_->getPositionJacobian (inStartJoint,
+					  inEndJoint,
+					  inFrameLocalPosition,
+					  outjacobian,
+					  offset,
+					  inIncludeStartFreeFlyer);
+    }
+
+    bool
+    HumanoidDynamicRobot::
+    getOrientationJacobian (const CjrlJoint& inStartJoint,
+			    const CjrlJoint& inEndJoint,
+			    matrixNxP& outjacobian,
+			    unsigned int offset,
+			    bool inIncludeStartFreeFlyer)
+    {
+      return dynamicRobot_->getOrientationJacobian (inStartJoint,
+					     inEndJoint,
+					     outjacobian,
+					     offset,
+					     inIncludeStartFreeFlyer);
+    }
+
+    bool HumanoidDynamicRobot::
+    getJacobianCenterOfMass (const CjrlJoint& inStartJoint,
+			     matrixNxP& outjacobian,
+			     unsigned int offset,
+			     bool inIncludeStartFreeFlyer)
+    {
+      return dynamicRobot_->getJacobianCenterOfMass (inStartJoint,
+					      outjacobian,
+					      offset,
+					      inIncludeStartFreeFlyer);
+    }
+
+    void HumanoidDynamicRobot::computeInertiaMatrix ()
+    {
+      return dynamicRobot_->computeInertiaMatrix ();
+    }
+
+    const matrixNxP& HumanoidDynamicRobot::inertiaMatrix () const
+    {
+      return dynamicRobot_->inertiaMatrix ();
+    }
+
+    const std::vector<CjrlJoint*>& HumanoidDynamicRobot::getActuatedJoints () const
+    {
+      return dynamicRobot_->getActuatedJoints ();
+    }
+ 
+    void
+    HumanoidDynamicRobot::setActuatedJoints (std::vector<CjrlJoint*>& actuatedJoints)
+    {
+      return dynamicRobot_->setActuatedJoints (actuatedJoints);
     }
 
     void HumanoidDynamicRobot::waist (CjrlJoint* waist)
