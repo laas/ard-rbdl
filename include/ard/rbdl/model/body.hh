@@ -39,6 +39,9 @@ namespace ard
       public boost::enable_shared_from_this<Body>
     {
     public:
+      /// \brief Default constructor.
+      Body ();
+
       /// \brief Constructor.
       ///
       /// \param mass Body mass

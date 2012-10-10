@@ -29,6 +29,13 @@ namespace ard
 {
   namespace rbdl
   {
+    Body::Body () :
+      boost::enable_shared_from_this<Body> (),
+      rbdlBody_ (),
+      joint_ ()
+    {
+    }
+
     Body::Body (const double& mass,
 		const vector3d& com,
 		const matrix3d& inertia,
