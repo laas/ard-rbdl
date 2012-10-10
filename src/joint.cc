@@ -52,6 +52,29 @@ namespace ard
     {
     }
     
+    Joint::Joint (const matrix4d initialPosition) :
+      boost::enable_shared_from_this<Joint> (),
+      name_ (),
+      parentJoint_ (),
+      childJoints_ (),
+      rbdlJoint_ (),
+      rankInConfiguration_ (),
+      initialPosition_ (initialPosition),
+      currentTransformation_ (),
+      velocity_ (),
+      acceleration_ (vector3d (0, 0, 0), vector3d (0, 0, 0)),
+      numberDof_ (),
+      lowerBound_ (),
+      upperBound_ (),
+      lowerVelocityBound_ (),
+      upperVelocityBound_ (),
+      lowerTorqueBound_ (),
+      upperTorqueBound_ (),
+      jacobian_ (),
+      linkedBody_ ()
+    {
+    }
+
     Joint::Joint (Joint& joint):
       acceleration_ (vector3d (0, 0, 0), vector3d (0, 0, 0))
     {
