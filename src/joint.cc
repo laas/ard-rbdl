@@ -52,7 +52,7 @@ namespace ard
     {
     }
     
-    Joint::Joint (const matrix4d initialPosition) :
+    Joint::Joint (const matrix4d& initialPosition) :
       boost::enable_shared_from_this<Joint> (),
       name_ (),
       parentJoint_ (),

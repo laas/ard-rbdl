@@ -46,7 +46,7 @@ namespace ard
       ///
       /// \param initialPosition initial transformation in absolute
       /// frame.
-      Joint (const matrix4d initialPosition);
+      Joint (const matrix4d& initialPosition);
 
       /// \brief Copy Constructor.
       Joint (Joint& joint);
