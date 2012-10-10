@@ -41,6 +41,11 @@ namespace ard
       /// \brief Default construcor.
       Foot ();
 
+      /// \brief Create foot with associated ankle joint.
+      ///
+      /// \param ankle associated ankle joint.
+      Foot (const jointShPtr_t& ankle);
+
       /// \brief Destructor
       virtual ~Foot ();
 

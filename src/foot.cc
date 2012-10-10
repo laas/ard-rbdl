@@ -38,6 +38,15 @@ namespace ard
     {
     }
 
+    Foot::Foot (const jointShPtr_t& ankle) :
+      boost::enable_shared_from_this<Foot> (),
+      ankleJoint_ (ankle),
+      soleLength_ (),
+      soleWidth_ (),
+      ankleInLocalFrame_ ()
+    {
+    }
+
     Foot::~Foot ()
     {
     }
