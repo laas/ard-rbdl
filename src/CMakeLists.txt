@@ -6,6 +6,7 @@ ADD_LIBRARY(${LIBRARY_NAME}
   body.cc
   dynamic-robot.cc
   hand.cc
+  foot.cc
   )
 
 SET_TARGET_PROPERTIES(${LIBRARY_NAME} PROPERTIES SOVERSION ${PROJECT_VERSION})
