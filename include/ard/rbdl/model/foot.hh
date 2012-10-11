@@ -44,6 +44,11 @@ namespace ard
       /// \brief Create foot with associated ankle joint.
       ///
       /// \param ankle associated ankle joint.
+      explicit Foot (const to_pointer<CjrlJoint>::type& ankle);
+
+      /// \brief Create foot with associated ankle joint.
+      ///
+      /// \param ankle associated ankle joint.
       explicit Foot (const jointShPtr_t& ankle);
 
       /// \brief Destructor

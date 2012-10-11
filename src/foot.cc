@@ -38,6 +38,16 @@ namespace ard
     {
     }
 
+    Foot::Foot (const to_pointer<CjrlJoint>::type& ankle) : 
+      boost::enable_shared_from_this<Foot> (),
+      ankleJoint_ (),
+      soleLength_ (),
+      soleWidth_ (),
+      ankleInLocalFrame_ ()
+    {
+      getPtrFromBase (ankleJoint_, ankle);
+    }
+
     Foot::Foot (const jointShPtr_t& ankle) :
       boost::enable_shared_from_this<Foot> (),
       ankleJoint_ (ankle),
