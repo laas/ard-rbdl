@@ -97,7 +97,7 @@ namespace ard
 	= (robotRoot2StartJoint.size () < robotRoot2EndJoint.size())
 	? robotRoot2StartJoint.size() : robotRoot2EndJoint.size();
 
-      for (unsigned int i = 1;i < minChainLength; ++i)
+      for (unsigned int i = 1; i < minChainLength; ++i)
 	if ((robotRoot2StartJoint[i] == robotRoot2EndJoint[i]))
 	  ++lastCommonJointRank;
 
