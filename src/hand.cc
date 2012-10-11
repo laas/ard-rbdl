@@ -65,16 +65,12 @@ namespace ard
 
     to_pointer<CjrlJoint>::type Hand::associatedWrist () const
     {
-      return getUnsafePointer (wristJoint_);
+      return getSharedPointer (wristJoint_);
     }
 
     void Hand::setAssociatedWrist (to_pointer<CjrlJoint>::type joint)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (joint);
-      if (jointPtr)
-	wristJoint_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      return getPtrFromBase (wristJoint_, joint);
     }
 
     void Hand::getCenter (vector3d& center) const

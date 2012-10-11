@@ -63,16 +63,12 @@ namespace ard
 
     to_pointer<CjrlJoint>::type Foot::associatedAnkle () const
     {
-      return getUnsafePointer (ankleJoint_);
+      return getSharedPointer (ankleJoint_);
     }
 
     void Foot::setAssociatedAnkle (to_pointer<CjrlJoint>::type joint)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (joint);
-      if (jointPtr)
-	ankleJoint_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      return getPtrFromBase (ankleJoint_, joint);
     }
 
     void Foot::getSoleSize (double& length, double& width) const

@@ -48,6 +48,46 @@ namespace ard
 	return 0;
     }
 
+    template <class T>
+    inline boost::shared_ptr<T> getSharedPointer (boost::weak_ptr<T> wkPtr)
+    {
+      boost::shared_ptr<T> shPtr = wkPtr.lock ();
+      if (shPtr)
+	// return shPtr->shared_from_this ();
+	return shPtr;
+      else
+	throw std::runtime_error ("Null pointer.");
+    }
+
+    template <typename T, typename U>
+    inline void getPtrFromBase
+    (T*& dstPtr, U* srcPtr)
+    {
+      dstPtr = dynamic_cast<T*> (srcPtr);
+      return;
+    }
+
+    template <typename T, typename U>
+    inline void getPtrFromBase
+    (boost::shared_ptr<T>& dstPtr, const boost::shared_ptr<U>& srcPtr)
+    {
+      dstPtr = boost::dynamic_pointer_cast<T> (srcPtr);
+      return;
+    }
+
+    template <typename T, typename U>
+    inline void getPtrFromBase
+    (boost::weak_ptr<T>& dstPtr, const boost::shared_ptr<U>& srcPtr)
+    {
+      boost::shared_ptr<T> shPtr;
+      getPtrFromBase (shPtr, srcPtr);
+      if (shPtr)
+	dstPtr = boost::weak_ptr<T> (shPtr);
+      else
+	throw std::runtime_error ("Null pointer.");
+      return;
+    }
+
     inline bool isJointInVector (const jointShPtr_t& joint,
 				 const jointShPtrs_t& joints)
     {

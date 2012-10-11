@@ -65,7 +65,8 @@ namespace ard
 
     void DynamicRobot::rootJoint (CjrlJoint& joint)
     {
-      jointPtr_t ptr = dynamic_cast<jointPtr_t> (&joint);
+      jointPtr_t ptr;
+      getPtrFromBase (ptr, &joint);
       if (ptr)
 	rootJoint (*ptr);
       else
@@ -74,14 +75,14 @@ namespace ard
 
     to_pointer<CjrlJoint>::type DynamicRobot::rootJoint () const
     {
-      return getUnsafePointer (rootJoint_);
+      return rootJoint_;
     }
 
     std::vector<to_pointer<CjrlJoint>::type > DynamicRobot::jointVector ()
     {
-      ardJointPtrs_t ardJoints (jointVector_.size ());
+      ardJointShPtrs_t ardJoints (jointVector_.size ());
       for (unsigned i = 0; i < jointVector_.size (); ++i)
-	ardJoints[i] = getUnsafePointer (jointVector_[i]);
+	ardJoints[i] = getSharedPointer (jointVector_[i]);
       return ardJoints;
     }
 
@@ -89,8 +90,10 @@ namespace ard
     DynamicRobot::jointsBetween (const CjrlJoint& startJoint,
 				 const CjrlJoint& endJoint) const
     {
-      ardJointPtrs_t robotRoot2StartJoint = startJoint.jointsFromRootToThis ();
-      ardJointPtrs_t robotRoot2EndJoint = endJoint.jointsFromRootToThis ();
+      ardJointShPtrs_t robotRoot2StartJoint
+	= startJoint.jointsFromRootToThis ();
+      ardJointShPtrs_t robotRoot2EndJoint
+	= endJoint.jointsFromRootToThis ();
 
       unsigned int lastCommonJointRank = 0;
       unsigned int minChainLength
@@ -101,7 +104,7 @@ namespace ard
 	if ((robotRoot2StartJoint[i] == robotRoot2EndJoint[i]))
 	  ++lastCommonJointRank;
 
-      ardJointPtrs_t outJoints;
+      ardJointShPtrs_t outJoints;
       for (unsigned int i = robotRoot2StartJoint.size() - 1;
 	   i > lastCommonJointRank;
 	   i--)
@@ -348,9 +351,9 @@ namespace ard
     const std::vector<to_pointer<CjrlJoint>::type >&
     DynamicRobot::getActuatedJoints () const
     {
-      ardJointPtrs_t ardJoints (actuatedJoints_.size ());
+      ardJointShPtrs_t ardJoints (actuatedJoints_.size ());
       for (unsigned i = 0; i < actuatedJoints_.size (); ++i)
-	ardJoints[i] = getUnsafePointer (actuatedJoints_[i]);
+	ardJoints[i] = getSharedPointer (actuatedJoints_[i]);
       return ardJoints;
     }
  
@@ -359,14 +362,11 @@ namespace ard
     (std::vector<to_pointer<CjrlJoint>::type >& actuatedJoints)
     {
       actuatedJoints_.clear ();
-      BOOST_FOREACH (ardJointPtr_t ardJoint, actuatedJoints)
+      BOOST_FOREACH (ardJointShPtr_t ardJoint, actuatedJoints)
 	{
-	  jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (ardJoint);
-	  if (jointPtr)
-	    actuatedJoints_.push_back (jointWkPtr_t
-				       (jointPtr->shared_from_this ()));
-	  else
-	    throw std::runtime_error ("Null pointer to joint.");
+	  jointWkPtr_t jointWkPtr;
+	  getPtrFromBase (jointWkPtr, ardJoint);
+	  actuatedJoints_.push_back (jointWkPtr);
 	}
     }
 

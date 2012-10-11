@@ -321,96 +321,73 @@ namespace ard
 
     void HumanoidDynamicRobot::waist (to_pointer<CjrlJoint>::type waist)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (waist);
-      if (jointPtr)
-	waist_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      return getPtrFromBase (waist_, waist);
     }
 
     to_pointer<CjrlJoint>::type HumanoidDynamicRobot::waist () const
     {
-      return getUnsafePointer (waist_);
+      return getSharedPointer (waist_);
     }
 
     void HumanoidDynamicRobot::chest (to_pointer<CjrlJoint>::type chest)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (chest);
-      if (jointPtr)
-	chest_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      return getPtrFromBase (chest_, chest);
     }
 
     to_pointer<CjrlJoint>::type HumanoidDynamicRobot::chest () const
     {
-      return getUnsafePointer (chest_);
+      return getSharedPointer (chest_);
     }
 
     void HumanoidDynamicRobot::leftWrist (to_pointer<CjrlJoint>::type leftWrist)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (leftWrist);
-      if (jointPtr)
-	leftWrist_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      return getPtrFromBase (leftWrist_, leftWrist);
     }
 
     to_pointer<CjrlJoint>::type HumanoidDynamicRobot::leftWrist () const
     {
-      return getUnsafePointer (leftWrist_);
+      return getSharedPointer (leftWrist_);
     }
 
     void HumanoidDynamicRobot::rightWrist
     (to_pointer<CjrlJoint>::type rightWrist)
-    {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (rightWrist);
-      if (jointPtr)
-	rightWrist_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+    { 
+      return getPtrFromBase (rightWrist_, rightWrist);
     }
 
     to_pointer<CjrlJoint>::type HumanoidDynamicRobot::rightWrist () const
     {
-      return getUnsafePointer (rightWrist_);
+      return getSharedPointer (rightWrist_);
     }
 
     void HumanoidDynamicRobot::rightHand (to_pointer<CjrlHand>::type rightHand)
     {
-      handPtr_t handPtr = dynamic_cast<handPtr_t> (rightHand);
-      if (handPtr)
-	rightHand_ = handPtr->shared_from_this ();
-      else
-	throw std::runtime_error ("Null pointer to hand.");
+      return getPtrFromBase (rightHand_, rightHand);
     }
 
     to_pointer<CjrlHand>::type HumanoidDynamicRobot::rightHand () const
     {
-      return getUnsafePointer (rightHand_);
+      return rightHand_;
     }
 
     void HumanoidDynamicRobot::leftHand (to_pointer<CjrlHand>::type leftHand)
     {
-      handPtr_t handPtr = dynamic_cast<handPtr_t> (leftHand);
-      if (handPtr)
-	leftHand_ = handPtr->shared_from_this ();
-      else
-	throw std::runtime_error ("Null pointer to hand.");
+      return getPtrFromBase (leftHand_, leftHand);
     }
 
     to_pointer<CjrlHand>::type HumanoidDynamicRobot::leftHand () const
     {
-      return getUnsafePointer (leftHand_);
+      return leftHand_;
     }
 
     double HumanoidDynamicRobot::getHandClench (to_pointer<CjrlHand>::type hand)
     {
       ardHandPtr_t rightHandPtr = getUnsafePointer (rightHand_);
       ardHandPtr_t leftHandPtr = getUnsafePointer (leftHand_);
-      if (rightHandPtr == hand)
+      ardHandPtr_t handPtr = getUnsafePointer (hand);
+      if (rightHandPtr == handPtr)
 	return rightHandClench_;
-      else if (leftHandPtr == hand)
+      else if (leftHandPtr == handPtr)
 	return leftHandClench_;
       else
 	throw std::runtime_error ("Hand pointer not found in robot.");
@@ -424,9 +401,10 @@ namespace ard
 	{
 	  ardHandPtr_t rightHandPtr = getUnsafePointer (rightHand_);
 	  ardHandPtr_t leftHandPtr = getUnsafePointer (leftHand_);
-	  if (rightHandPtr == hand)
+	  ardHandPtr_t handPtr = getUnsafePointer (hand);
+	  if (rightHandPtr == handPtr)
 	    return rightHandClench_;
-	  else if (leftHandPtr == hand)
+	  else if (leftHandPtr == handPtr)
 	    return leftHandClench_;
 	  else
 	    throw std::runtime_error ("Hand pointer not found in robot.");
@@ -442,72 +420,52 @@ namespace ard
 
     void HumanoidDynamicRobot::rightAnkle (to_pointer<CjrlJoint>::type rightAnkle)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (rightAnkle);
-      if (jointPtr)
-	rightAnkle_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      getPtrFromBase (rightAnkle_, rightAnkle);
     }
 
     to_pointer<CjrlJoint>::type HumanoidDynamicRobot::rightAnkle () const
     {
-      return getUnsafePointer (rightAnkle_);
+      return getSharedPointer (rightAnkle_);
     }
 
     void HumanoidDynamicRobot::leftAnkle (to_pointer<CjrlJoint>::type leftAnkle)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (leftAnkle);
-      if (jointPtr)
-	leftAnkle_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      getPtrFromBase (leftAnkle_, leftAnkle);
     }
 
     to_pointer<CjrlJoint>::type HumanoidDynamicRobot::leftAnkle () const
     {
-      return getUnsafePointer (leftAnkle_);
+      return getSharedPointer (leftAnkle_);
     }
 
     void HumanoidDynamicRobot::rightFoot (to_pointer<CjrlFoot>::type rightFoot)
     {
-      footPtr_t footPtr = dynamic_cast<footPtr_t> (rightFoot);
-      if (footPtr)
-	rightFoot_ = footPtr->shared_from_this ();
-      else
-	throw std::runtime_error ("Null pointer to foot.");
+      getPtrFromBase (rightFoot_, rightFoot);
     }
 
     to_pointer<CjrlFoot>::type HumanoidDynamicRobot::rightFoot () const
     {
-      return getUnsafePointer (rightFoot_);
+      return rightFoot_;
     }
 
     void HumanoidDynamicRobot::leftFoot (to_pointer<CjrlFoot>::type leftFoot)
     {
-      footPtr_t footPtr = dynamic_cast<footPtr_t> (leftFoot);
-      if (footPtr)
-	leftFoot_ = footPtr->shared_from_this ();
-      else
-	throw std::runtime_error ("Null pointer to foot.");
+      getPtrFromBase (leftFoot_, leftFoot);
     }
 
     to_pointer<CjrlFoot>::type HumanoidDynamicRobot::leftFoot () const
     {
-      return getUnsafePointer (leftFoot_);
+      return leftFoot_;
     }
 
     void HumanoidDynamicRobot::gazeJoint (to_pointer<CjrlJoint>::type gazeJoint)
     {
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (gazeJoint);
-      if (jointPtr)
-	gazeJoint_ = jointWkPtr_t (jointPtr->shared_from_this ());
-      else
-	throw std::runtime_error ("Null pointer to joint.");
+      getPtrFromBase (gazeJoint_, gazeJoint);
     }
 
     to_pointer<CjrlJoint>::type HumanoidDynamicRobot::gazeJoint () const
     {
-      return getUnsafePointer (gazeJoint_);
+      return getSharedPointer (gazeJoint_);
     }
 
     void

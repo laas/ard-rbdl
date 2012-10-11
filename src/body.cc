@@ -95,7 +95,7 @@ namespace ard
 
     to_pointer<const CjrlJoint>::type Body::joint () const
     {
-      return getUnsafePointer (joint_);
+      return getSharedPointer (joint_);
     }
 
   } // end of namespace rbdl.

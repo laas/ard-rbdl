@@ -103,17 +103,15 @@ namespace ard
     }
 
     Joint::Joint (Joint& joint):
+      boost::enable_shared_from_this<Joint> (),
       acceleration_ (vector3d (0, 0, 0), vector3d (0, 0, 0))
     {
       name_ = joint.getName ();
       
-      jointPtr_t parentJointPtr
-	= dynamic_cast<jointPtr_t> (joint.parentJoint ());
-      if (parentJointPtr)
-	{
-	  jointShPtr_t parentJointShPtr = parentJointPtr->shared_from_this ();
-	  setParentJoint (parentJointShPtr);
-	}
+      jointShPtr_t parentJointShPtr;
+      getPtrFromBase (parentJointShPtr, joint.parentJoint ());
+      if (parentJointShPtr)
+	setParentJoint (parentJointShPtr);
       else
 	throw std::runtime_error ("Null pointer to parent joint.");
 
@@ -146,10 +144,10 @@ namespace ard
 
       jacobian_ = joint.jacobianJointWrtConfig ();
 
-      bodyPtr_t linkedBodyPtr
-	= dynamic_cast<bodyPtr_t> (joint.linkedBody ());
-      if (linkedBodyPtr)
-	setLinkedBody (*linkedBodyPtr);
+      bodyShPtr_t linkedBodyShPtr;
+      getPtrFromBase (linkedBodyShPtr, joint.linkedBody ());
+      if (linkedBodyShPtr)
+	setLinkedBody (*linkedBodyShPtr);
       else
 	throw std::runtime_error ("Null pointer to linked body.");
     }
@@ -170,14 +168,15 @@ namespace ard
 
     to_pointer<CjrlJoint>::type Joint::parentJoint () const
     {
-      return getUnsafePointer (parentJoint_);
+      return getSharedPointer (parentJoint_);
     }
 
     bool Joint::addChildJoint (CjrlJoint& joint)
     {
       // Link joints in abstract robot dynamics. The rbdl joints
       // will be linked later during initialization.
-      jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (&joint);
+      jointPtr_t jointPtr;
+      getPtrFromBase (jointPtr, &joint);
       if (jointPtr)
 	return addChildJoint (*jointPtr);
       else
@@ -191,8 +190,7 @@ namespace ard
 
     to_pointer<CjrlJoint>::type Joint::childJoint (unsigned int jointRank) const
     {
-      assert (!!childJoints_[jointRank] && "Null pointer to joint.");
-      return getUnsafePointer (childJoints_[jointRank]);
+      return childJoints_[jointRank];
     }
 
     rbdlJoint_t Joint::rbdlJoint () const
@@ -202,13 +200,15 @@ namespace ard
 
     std::vector<to_pointer<CjrlJoint>::type> Joint::jointsFromRootToThis () const
     {
-      ardJointPtrs_t fromRootToThis;
+      ardJointShPtrs_t fromRootToThis;
 
       // Update vector of joints going starting from root joint.
       // Const cast this joint pointer because method returns a vector
       // of non-const pointers.
-      fromRootToThis.push_back (const_cast<jointPtr_t> (this));
-      ardJointPtr_t parentJoint = getUnsafePointer (parentJoint_);
+      jointShPtr_t ptr
+	= boost::const_pointer_cast<joint_t> (shared_from_this ());
+      fromRootToThis.push_back (ptr);
+      ardJointShPtr_t parentJoint = getSharedPointer (parentJoint_);
       while (parentJoint != 0)
 	{
 	  fromRootToThis.insert(fromRootToThis.begin (), parentJoint);
@@ -333,12 +333,13 @@ namespace ard
 
     to_pointer<CjrlBody>::type Joint::linkedBody () const
     {
-      return getUnsafePointer (linkedBody_);;
+      return linkedBody_;
     }
 
     void Joint::setLinkedBody (CjrlBody& body)
     {
-      bodyPtr_t bodyPtr = dynamic_cast<bodyPtr_t> (&body);
+      bodyPtr_t bodyPtr;
+      getPtrFromBase (bodyPtr, &body);
       if (bodyPtr)
 	return setLinkedBody (*bodyPtr);
       else
