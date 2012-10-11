@@ -39,12 +39,12 @@ namespace ard
     {
     public:
       /// \brief Default constructor.
-      Hand ();
+      explicit Hand ();
 
       /// \brief Create hand with associated wrist joint.
       ///
       /// \param wrist associated wrist joint
-      Hand (const jointShPtr_t& wrist);
+      explicit Hand (const jointShPtr_t& wrist);
 
       /// \brief Destructor.
       virtual ~Hand ();

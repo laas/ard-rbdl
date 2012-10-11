@@ -40,13 +40,13 @@ namespace ard
     {
     public:
       /// \brief Default Constructor.
-      Joint ();
+      explicit Joint ();
 
       /// \brief Create a joint with a given initial position.
       ///
       /// \param initialPosition initial transformation in absolute
       /// frame.
-      Joint (const matrix4d& initialPosition);
+      explicit Joint (const matrix4d& initialPosition);
 
       /// \brief Copy Constructor.
       Joint (Joint& joint);

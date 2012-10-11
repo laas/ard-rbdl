@@ -44,7 +44,7 @@ namespace ard
       /// \{
 
       /// \brief Default construcor.
-      HumanoidDynamicRobot ();
+      explicit HumanoidDynamicRobot ();
 
       /// \brief Destructor.
       virtual ~HumanoidDynamicRobot();

@@ -43,7 +43,7 @@ namespace ard
       /// \{
 
       /// \brief Default constructor.
-      DynamicRobot ();
+      explicit DynamicRobot ();
 
       /// \brief Copy constructor.
       DynamicRobot (const DynamicRobot& robot);

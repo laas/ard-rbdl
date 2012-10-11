@@ -39,12 +39,12 @@ namespace ard
     {
     public:
       /// \brief Default construcor.
-      Foot ();
+      explicit Foot ();
 
       /// \brief Create foot with associated ankle joint.
       ///
       /// \param ankle associated ankle joint.
-      Foot (const jointShPtr_t& ankle);
+      explicit Foot (const jointShPtr_t& ankle);
 
       /// \brief Destructor
       virtual ~Foot ();

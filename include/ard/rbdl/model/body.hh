@@ -40,7 +40,7 @@ namespace ard
     {
     public:
       /// \brief Default constructor.
-      Body ();
+      explicit Body ();
 
       /// \brief Constructor.
       ///
@@ -48,10 +48,10 @@ namespace ard
       /// \param com Center of mass in body frame.
       /// \param inertia Inertia matrix in body frame.
       /// \param joint Parent joint.
-      Body (const double& mass,
-	    const vector3d& com,
-	    const matrix3d& inertia,
-	    joint_t& joint);
+      explicit Body (const double& mass,
+		     const vector3d& com,
+		     const matrix3d& inertia,
+		     joint_t& joint);
 
       /// \brief Destructor.
       virtual ~Body ();
