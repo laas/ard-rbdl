@@ -92,22 +92,25 @@ namespace ard
       ardJointPtrs_t robotRoot2StartJoint = startJoint.jointsFromRootToThis ();
       ardJointPtrs_t robotRoot2EndJoint = endJoint.jointsFromRootToThis ();
 
-      unsigned int i;
       unsigned int lastCommonJointRank = 0;
       unsigned int minChainLength
 	= (robotRoot2StartJoint.size () < robotRoot2EndJoint.size())
 	? robotRoot2StartJoint.size() : robotRoot2EndJoint.size();
 
-      for (i = 1;i < minChainLength; ++i)
+      for (unsigned int i = 1;i < minChainLength; ++i)
 	if ((robotRoot2StartJoint[i] == robotRoot2EndJoint[i]))
 	  ++lastCommonJointRank;
 
       ardJointPtrs_t outJoints;
-      for (i = robotRoot2StartJoint.size() - 1; i > lastCommonJointRank; i--)
+      for (unsigned int i = robotRoot2StartJoint.size() - 1;
+	   i > lastCommonJointRank;
+	   i--)
 	outJoints.push_back (robotRoot2StartJoint[i]);
       if (lastCommonJointRank == 0)
 	outJoints.push_back (robotRoot2EndJoint[0]);
-      for (i = lastCommonJointRank + 1; i < robotRoot2EndJoint.size (); i++)
+      for (unsigned int i = lastCommonJointRank + 1;
+	   i < robotRoot2EndJoint.size ();
+	   i++)
 	outJoints.push_back (robotRoot2EndJoint[i]);
 
       return outJoints;
