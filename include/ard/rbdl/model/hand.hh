@@ -44,6 +44,11 @@ namespace ard
       /// \brief Create hand with associated wrist joint.
       ///
       /// \param wrist associated wrist joint
+      explicit Hand (const to_pointer<CjrlJoint>::type& wrist);
+
+      /// \brief Create hand with associated wrist joint.
+      ///
+      /// \param wrist associated wrist joint
       explicit Hand (const jointShPtr_t& wrist);
 
       /// \brief Destructor.

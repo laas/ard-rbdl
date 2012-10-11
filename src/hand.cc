@@ -39,6 +39,16 @@ namespace ard
     {
     }
 
+    Hand::Hand (const to_pointer<CjrlJoint>::type& wrist) :
+      wristJoint_ (),
+      center_ (),
+      thumbAxis_ (),
+      foreFingerAxis_ (),
+      palmNormal_ ()
+    {
+      getPtrFromBase (wristJoint_, wrist);
+    }
+
     Hand::Hand (const jointShPtr_t& wrist) :
       boost::enable_shared_from_this<Hand> (),
       wristJoint_ (wrist),
