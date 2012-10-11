@@ -64,15 +64,15 @@ namespace ard
       virtual void rootJoint (CjrlJoint& inJoint);
 
       /// \brief Get the root joint of the robot.
-      virtual CjrlJoint* rootJoint () const;
+      virtual to_pointer<CjrlJoint>::type rootJoint () const;
 
       /// \brief Get a vector containing all the joints.
-      virtual std::vector<CjrlJoint*> jointVector ();
+      virtual std::vector<to_pointer<CjrlJoint>::type > jointVector ();
 
       /// \brief Get the chain of joints between two joints
       /// \param inStartJoint First joint.
       /// \param inEndJoint Second joint.
-      virtual std::vector<CjrlJoint*>
+      virtual std::vector<to_pointer<CjrlJoint>::type >
       jointsBetween (const CjrlJoint& inStartJoint,
 		     const CjrlJoint& inEndJoint) const;
 
@@ -101,7 +101,9 @@ namespace ard
       ///
       /// Specifies the order of the joints in the configuration vector.
       /// The vector should contain all the joints of the current robot.
-      virtual void setJointOrderInConfig (std::vector<CjrlJoint*> inJointVector);
+      virtual void
+      setJointOrderInConfig
+      (std::vector<to_pointer<CjrlJoint>::type > inJointVector);
 
       /// \}
 
@@ -300,10 +302,13 @@ namespace ard
       /// \{
 
       /// \brief Returns the list of actuated joints.
-      virtual const std::vector<CjrlJoint*>& getActuatedJoints() const;
+      virtual const
+      std::vector<to_pointer<CjrlJoint>::type >& getActuatedJoints() const;
 
       /// \brief Specifies the list of actuated joints.
-      virtual void setActuatedJoints(std::vector<CjrlJoint*>& lActuatedJoints);
+      virtual void
+      setActuatedJoints
+      (std::vector<to_pointer<CjrlJoint>::type >& lActuatedJoints);
 
       /// \}
 

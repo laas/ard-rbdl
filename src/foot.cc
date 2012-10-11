@@ -51,12 +51,12 @@ namespace ard
     {
     }
 
-    CjrlJoint* Foot::associatedAnkle () const
+    to_pointer<CjrlJoint>::type Foot::associatedAnkle () const
     {
       return getUnsafePointer (ankleJoint_);
     }
 
-    void Foot::setAssociatedAnkle (CjrlJoint* joint)
+    void Foot::setAssociatedAnkle (to_pointer<CjrlJoint>::type joint)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (joint);
       if (jointPtr)

@@ -50,10 +50,10 @@ namespace ard
       virtual ~Foot ();
 
       /// \brief Get the ankle to which the foot is attached
-      virtual CjrlJoint* associatedAnkle () const;
+      virtual to_pointer<CjrlJoint>::type associatedAnkle () const;
 
       /// \brief Set the ankle to which the hand is attached.
-      virtual void setAssociatedAnkle (CjrlJoint* inJoint);
+      virtual void setAssociatedAnkle (to_pointer<CjrlJoint>::type inJoint);
 
       /// \brief Get size of the rectagular sole
       ///

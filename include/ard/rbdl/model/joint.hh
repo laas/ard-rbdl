@@ -72,7 +72,7 @@ namespace ard
       /// \warning A shared pointer is created then deleted in this
       /// getter. There is therefore no guarantee that the joint will
       /// still exist once the shared pointer has been deleted.
-      virtual CjrlJoint* parentJoint () const;
+      virtual to_pointer<CjrlJoint>::type parentJoint () const;
 
       /// \brief Add a child joint.
       virtual bool addChildJoint (CjrlJoint& joint);
@@ -81,7 +81,8 @@ namespace ard
       virtual unsigned int countChildJoints () const;
 
       /// \brief Return the child joint at the given rank.
-      virtual CjrlJoint* childJoint (unsigned int jointRank) const;
+      virtual to_pointer<CjrlJoint>::type
+      childJoint (unsigned int jointRank) const;
 
       /// \brief Get underlying rbdl joint.
       virtual rbdlJoint_t rbdlJoint () const;
@@ -89,7 +90,8 @@ namespace ard
       /// \brief Get a vector containing references of the joints
       /// between the rootJoint and this joint. The root Joint and
       /// this Joint are included in the vector.
-      virtual std::vector<CjrlJoint*> jointsFromRootToThis () const;
+      virtual std::vector<to_pointer<CjrlJoint>::type >
+      jointsFromRootToThis () const;
 
       /// \brief Get the rank of this joint in the robot
       /// configuration vector.
@@ -277,7 +279,7 @@ namespace ard
       /// \{
 
       /// \brief Get a pointer to the linked body (if any).
-      virtual CjrlBody* linkedBody () const;
+      virtual to_pointer<CjrlBody>::type linkedBody () const;
 
       /// \brief Link a body to the joint.
       virtual void setLinkedBody (CjrlBody& inBody);

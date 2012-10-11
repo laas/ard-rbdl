@@ -33,6 +33,7 @@ typedef Eigen::Matrix<double, 4, 4> matrix4d;
 typedef RigidBodyDynamics::Math::VectorNd vectorN;
 typedef RigidBodyDynamics::Math::MatrixNd matrixNxP;
 
+# include <abstract-robot-dynamics/traits/default-pointer.hh>
 # include <abstract-robot-dynamics/abstract-robot-dynamics.hh>
 
 # include <ard/rbdl/tools/fwd.hh>

@@ -50,10 +50,10 @@ namespace ard
       virtual ~Hand ();
 
       /// \brief Get the wrist joint to which the hand is attached.
-      virtual CjrlJoint* associatedWrist () const;
+      virtual to_pointer<CjrlJoint>::type associatedWrist () const;
 
       /// \brief Get the wrist joint to which the hand is attached.
-      virtual void setAssociatedWrist (CjrlJoint* inJoint );
+      virtual void setAssociatedWrist (to_pointer<CjrlJoint>::type inJoint );
 
       /// \brief Get the center of the hand
       ///

@@ -82,7 +82,7 @@ namespace ard
       /// \warning A shared pointer is created then deleted in this
       /// getter. There is therefore no guarantee that the joint will
       /// still exist once the shared pointer has been deleted.
-      virtual const CjrlJoint* joint () const;
+      virtual to_pointer<const CjrlJoint>::type joint () const;
 	
     private:
       /// \brief rbdl body attribute.

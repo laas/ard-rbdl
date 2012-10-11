@@ -93,7 +93,7 @@ namespace ard
       throw std::runtime_error ("Method not supported.");
     }
 
-    const CjrlJoint* Body::joint () const
+    to_pointer<const CjrlJoint>::type Body::joint () const
     {
       return getUnsafePointer (joint_);
     }

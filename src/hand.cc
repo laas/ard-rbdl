@@ -53,12 +53,12 @@ namespace ard
     {
     }
 
-    CjrlJoint* Hand::associatedWrist () const
+    to_pointer<CjrlJoint>::type Hand::associatedWrist () const
     {
       return getUnsafePointer (wristJoint_);
     }
 
-    void Hand::setAssociatedWrist (CjrlJoint* joint)
+    void Hand::setAssociatedWrist (to_pointer<CjrlJoint>::type joint)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (joint);
       if (jointPtr)

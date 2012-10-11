@@ -141,7 +141,7 @@ namespace ard
       name_ = name;
     }
 
-    CjrlJoint* Joint::parentJoint () const
+    to_pointer<CjrlJoint>::type Joint::parentJoint () const
     {
       return getUnsafePointer (parentJoint_);
     }
@@ -162,7 +162,7 @@ namespace ard
       return childJoints_.size ();
     }
 
-    CjrlJoint* Joint::childJoint (unsigned int jointRank) const
+    to_pointer<CjrlJoint>::type Joint::childJoint (unsigned int jointRank) const
     {
       assert (!!childJoints_[jointRank] && "Null pointer to joint.");
       return getUnsafePointer (childJoints_[jointRank]);
@@ -173,7 +173,7 @@ namespace ard
       return rbdlJoint_;
     }
 
-    std::vector<CjrlJoint*> Joint::jointsFromRootToThis () const
+    std::vector<to_pointer<CjrlJoint>::type> Joint::jointsFromRootToThis () const
     {
       ardJointPtrs_t fromRootToThis;
 
@@ -304,7 +304,7 @@ namespace ard
       throw std::runtime_error ("Method not supported.");
     }
 
-    CjrlBody* Joint::linkedBody () const
+    to_pointer<CjrlBody>::type Joint::linkedBody () const
     {
       return getUnsafePointer (linkedBody_);;
     }

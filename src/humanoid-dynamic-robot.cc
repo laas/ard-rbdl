@@ -67,17 +67,18 @@ namespace ard
       return dynamicRobot_->rootJoint (joint);
     }
 
-    CjrlJoint* HumanoidDynamicRobot::rootJoint () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::rootJoint () const
     {
       return dynamicRobot_->rootJoint ();
     }
 
-    std::vector<CjrlJoint*> HumanoidDynamicRobot::jointVector ()
+    std::vector<to_pointer<CjrlJoint>::type >
+    HumanoidDynamicRobot::jointVector ()
     {
       return dynamicRobot_->jointVector ();
     }
 
-    std::vector<CjrlJoint*>
+    std::vector<to_pointer<CjrlJoint>::type >
     HumanoidDynamicRobot::jointsBetween (const CjrlJoint& startJoint,
 					 const CjrlJoint& endJoint) const
     {
@@ -116,7 +117,8 @@ namespace ard
     }
 
     void
-    HumanoidDynamicRobot::setJointOrderInConfig (std::vector<CjrlJoint*> jointVector)
+    HumanoidDynamicRobot::setJointOrderInConfig
+    (std::vector<to_pointer<CjrlJoint>::type > jointVector)
     {
       return dynamicRobot_->setJointOrderInConfig (jointVector);
     }
@@ -304,18 +306,20 @@ namespace ard
       return dynamicRobot_->inertiaMatrix ();
     }
 
-    const std::vector<CjrlJoint*>& HumanoidDynamicRobot::getActuatedJoints () const
+    const std::vector<to_pointer<CjrlJoint>::type >&
+    HumanoidDynamicRobot::getActuatedJoints () const
     {
       return dynamicRobot_->getActuatedJoints ();
     }
  
     void
-    HumanoidDynamicRobot::setActuatedJoints (std::vector<CjrlJoint*>& actuatedJoints)
+    HumanoidDynamicRobot::setActuatedJoints
+    (std::vector<to_pointer<CjrlJoint>::type >& actuatedJoints)
     {
       return dynamicRobot_->setActuatedJoints (actuatedJoints);
     }
 
-    void HumanoidDynamicRobot::waist (CjrlJoint* waist)
+    void HumanoidDynamicRobot::waist (to_pointer<CjrlJoint>::type waist)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (waist);
       if (jointPtr)
@@ -324,12 +328,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* HumanoidDynamicRobot::waist () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::waist () const
     {
       return getUnsafePointer (waist_);
     }
 
-    void HumanoidDynamicRobot::chest (CjrlJoint* chest)
+    void HumanoidDynamicRobot::chest (to_pointer<CjrlJoint>::type chest)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (chest);
       if (jointPtr)
@@ -338,12 +342,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* HumanoidDynamicRobot::chest () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::chest () const
     {
       return getUnsafePointer (chest_);
     }
 
-    void HumanoidDynamicRobot::leftWrist (CjrlJoint* leftWrist)
+    void HumanoidDynamicRobot::leftWrist (to_pointer<CjrlJoint>::type leftWrist)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (leftWrist);
       if (jointPtr)
@@ -352,12 +356,13 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* HumanoidDynamicRobot::leftWrist () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::leftWrist () const
     {
       return getUnsafePointer (leftWrist_);
     }
 
-    void HumanoidDynamicRobot::rightWrist (CjrlJoint* rightWrist)
+    void HumanoidDynamicRobot::rightWrist
+    (to_pointer<CjrlJoint>::type rightWrist)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (rightWrist);
       if (jointPtr)
@@ -366,12 +371,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* HumanoidDynamicRobot::rightWrist () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::rightWrist () const
     {
       return getUnsafePointer (rightWrist_);
     }
 
-    void HumanoidDynamicRobot::rightHand (CjrlHand* rightHand)
+    void HumanoidDynamicRobot::rightHand (to_pointer<CjrlHand>::type rightHand)
     {
       handPtr_t handPtr = dynamic_cast<handPtr_t> (rightHand);
       if (handPtr)
@@ -380,12 +385,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to hand.");
     }
 
-    CjrlHand* HumanoidDynamicRobot::rightHand () const
+    to_pointer<CjrlHand>::type HumanoidDynamicRobot::rightHand () const
     {
       return getUnsafePointer (rightHand_);
     }
 
-    void HumanoidDynamicRobot::leftHand (CjrlHand* leftHand)
+    void HumanoidDynamicRobot::leftHand (to_pointer<CjrlHand>::type leftHand)
     {
       handPtr_t handPtr = dynamic_cast<handPtr_t> (leftHand);
       if (handPtr)
@@ -394,12 +399,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to hand.");
     }
 
-    CjrlHand* HumanoidDynamicRobot::leftHand () const
+    to_pointer<CjrlHand>::type HumanoidDynamicRobot::leftHand () const
     {
       return getUnsafePointer (leftHand_);
     }
 
-    double HumanoidDynamicRobot::getHandClench (CjrlHand* hand)
+    double HumanoidDynamicRobot::getHandClench (to_pointer<CjrlHand>::type hand)
     {
       ardHandPtr_t rightHandPtr = getUnsafePointer (rightHand_);
       ardHandPtr_t leftHandPtr = getUnsafePointer (leftHand_);
@@ -412,7 +417,8 @@ namespace ard
     }
 
     bool
-    HumanoidDynamicRobot::setHandClench (CjrlHand* hand, double clenchingValue)
+    HumanoidDynamicRobot::setHandClench
+    (to_pointer<CjrlHand>::type hand, double clenchingValue)
     {
       if (clenchingValue >=0 && clenchingValue <=1)
 	{
@@ -434,7 +440,7 @@ namespace ard
 	}
     }
 
-    void HumanoidDynamicRobot::rightAnkle (CjrlJoint* rightAnkle)
+    void HumanoidDynamicRobot::rightAnkle (to_pointer<CjrlJoint>::type rightAnkle)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (rightAnkle);
       if (jointPtr)
@@ -443,12 +449,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* HumanoidDynamicRobot::rightAnkle () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::rightAnkle () const
     {
       return getUnsafePointer (rightAnkle_);
     }
 
-    void HumanoidDynamicRobot::leftAnkle (CjrlJoint* leftAnkle)
+    void HumanoidDynamicRobot::leftAnkle (to_pointer<CjrlJoint>::type leftAnkle)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (leftAnkle);
       if (jointPtr)
@@ -457,12 +463,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* HumanoidDynamicRobot::leftAnkle () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::leftAnkle () const
     {
       return getUnsafePointer (leftAnkle_);
     }
 
-    void HumanoidDynamicRobot::rightFoot (CjrlFoot* rightFoot)
+    void HumanoidDynamicRobot::rightFoot (to_pointer<CjrlFoot>::type rightFoot)
     {
       footPtr_t footPtr = dynamic_cast<footPtr_t> (rightFoot);
       if (footPtr)
@@ -471,12 +477,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to foot.");
     }
 
-    CjrlFoot* HumanoidDynamicRobot::rightFoot () const
+    to_pointer<CjrlFoot>::type HumanoidDynamicRobot::rightFoot () const
     {
       return getUnsafePointer (rightFoot_);
     }
 
-    void HumanoidDynamicRobot::leftFoot (CjrlFoot* leftFoot)
+    void HumanoidDynamicRobot::leftFoot (to_pointer<CjrlFoot>::type leftFoot)
     {
       footPtr_t footPtr = dynamic_cast<footPtr_t> (leftFoot);
       if (footPtr)
@@ -485,12 +491,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to foot.");
     }
 
-    CjrlFoot* HumanoidDynamicRobot::leftFoot () const
+    to_pointer<CjrlFoot>::type HumanoidDynamicRobot::leftFoot () const
     {
       return getUnsafePointer (leftFoot_);
     }
 
-    void HumanoidDynamicRobot::gazeJoint (CjrlJoint* gazeJoint)
+    void HumanoidDynamicRobot::gazeJoint (to_pointer<CjrlJoint>::type gazeJoint)
     {
       jointPtr_t jointPtr = dynamic_cast<jointPtr_t> (gazeJoint);
       if (jointPtr)
@@ -499,7 +505,7 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* HumanoidDynamicRobot::gazeJoint () const
+    to_pointer<CjrlJoint>::type HumanoidDynamicRobot::gazeJoint () const
     {
       return getUnsafePointer (gazeJoint_);
     }

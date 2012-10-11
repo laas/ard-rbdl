@@ -72,12 +72,12 @@ namespace ard
 	throw std::runtime_error ("Null pointer to joint.");
     }
 
-    CjrlJoint* DynamicRobot::rootJoint () const
+    to_pointer<CjrlJoint>::type DynamicRobot::rootJoint () const
     {
       return getUnsafePointer (rootJoint_);
     }
 
-    std::vector<CjrlJoint*> DynamicRobot::jointVector ()
+    std::vector<to_pointer<CjrlJoint>::type > DynamicRobot::jointVector ()
     {
       ardJointPtrs_t ardJoints (jointVector_.size ());
       for (unsigned i = 0; i < jointVector_.size (); ++i)
@@ -85,7 +85,7 @@ namespace ard
       return ardJoints;
     }
 
-    std::vector<CjrlJoint*>
+    std::vector<to_pointer<CjrlJoint>::type >
     DynamicRobot::jointsBetween (const CjrlJoint& startJoint,
 				 const CjrlJoint& endJoint) const
     {
@@ -148,7 +148,8 @@ namespace ard
     }
 
     void
-    DynamicRobot::setJointOrderInConfig (std::vector<CjrlJoint*> jointVector)
+    DynamicRobot::setJointOrderInConfig
+    (std::vector<to_pointer<CjrlJoint>::type > jointVector)
     {
       // We assume this method will not be called.
       throw std::runtime_error ("Method not supported.");
@@ -344,7 +345,8 @@ namespace ard
       return inertiaMatrix_;
     }
 
-    const std::vector<CjrlJoint*>& DynamicRobot::getActuatedJoints () const
+    const std::vector<to_pointer<CjrlJoint>::type >&
+    DynamicRobot::getActuatedJoints () const
     {
       ardJointPtrs_t ardJoints (actuatedJoints_.size ());
       for (unsigned i = 0; i < actuatedJoints_.size (); ++i)
@@ -353,7 +355,8 @@ namespace ard
     }
  
     void
-    DynamicRobot::setActuatedJoints (std::vector<CjrlJoint*>& actuatedJoints)
+    DynamicRobot::setActuatedJoints
+    (std::vector<to_pointer<CjrlJoint>::type >& actuatedJoints)
     {
       actuatedJoints_.clear ();
       BOOST_FOREACH (ardJointPtr_t ardJoint, actuatedJoints)
