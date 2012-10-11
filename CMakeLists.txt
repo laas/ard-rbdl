@@ -27,6 +27,7 @@ SET(${PROJECT_NAME}_MODEL_HEADERS
   include/ard/rbdl/model/hand.hh
   include/ard/rbdl/model/foot.hh
   include/ard/rbdl/model/humanoid-dynamic-robot.hh
+  include/ard/rbdl/model/robot-dynamics-object-factory.hh
   )
 
 INSTALL(FILES ${${PROJECT_NAME}_TOOLS_HEADERS}

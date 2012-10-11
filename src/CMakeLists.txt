@@ -8,6 +8,7 @@ ADD_LIBRARY(${LIBRARY_NAME}
   hand.cc
   foot.cc
   humanoid-dynamic-robot.cc
+  robot-dynamics-object-factory.cc
   )
 
 SET_TARGET_PROPERTIES(${LIBRARY_NAME} PROPERTIES SOVERSION ${PROJECT_VERSION})
