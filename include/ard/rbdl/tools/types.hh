@@ -57,6 +57,15 @@ namespace ard
     typedef CjrlRigidVelocity ardVelocity_t;
     typedef CjrlRigidAcceleration ardAcceleration_t;
 
+    // Define enum for joint types.
+    enum JointType {
+      JOINT_TYPE_UNDEFINED = 0,
+      JOINT_TYPE_FIXED,
+      JOINT_TYPE_REVOLUTE,
+      JOINT_TYPE_PRISMATIC,
+      JOINT_TYPE_FREEFLYER
+    };
+
   } // end of namespace rbdl.
 } // end of namespace ard.
   

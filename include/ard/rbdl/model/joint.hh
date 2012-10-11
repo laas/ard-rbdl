@@ -42,11 +42,15 @@ namespace ard
       /// \brief Default Constructor.
       explicit Joint ();
 
-      /// \brief Create a joint with a given initial position.
+      /// \brief Create a joint with a given type and initial
+      /// position.
       ///
+      /// \param jointType joint type: fixed, revolute,
+      /// prismatic, etc.
       /// \param initialPosition initial transformation in absolute
       /// frame.
-      explicit Joint (const matrix4d& initialPosition);
+      explicit Joint (const JointType jointType,
+		      const matrix4d& initialPosition);
 
       /// \brief Copy Constructor.
       Joint (Joint& joint);

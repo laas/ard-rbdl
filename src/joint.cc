@@ -52,7 +52,7 @@ namespace ard
     {
     }
     
-    Joint::Joint (const matrix4d& initialPosition) :
+    Joint::Joint (const JointType jointType, const matrix4d& initialPosition) :
       boost::enable_shared_from_this<Joint> (),
       name_ (),
       parentJoint_ (),
@@ -73,6 +73,33 @@ namespace ard
       jacobian_ (),
       linkedBody_ ()
     {
+      switch (jointType)
+	{
+	case JOINT_TYPE_FIXED:
+	  {
+	    throw std::runtime_error ("Fixed joints not handled yet by rbdl.");
+	    break;
+	  }
+	case JOINT_TYPE_REVOLUTE:
+	  {
+	    rbdlJoint_ = rbdlJoint_t (RigidBodyDynamics::JointTypeRevolute,
+				      vector3d (1, 0, 0));
+	    break;
+	  }
+	case JOINT_TYPE_PRISMATIC:
+	  {
+	    rbdlJoint_ = rbdlJoint_t (RigidBodyDynamics::JointTypePrismatic,
+				      vector3d (1, 0, 0));
+	    break;
+	  }
+	case JOINT_TYPE_FREEFLYER:
+	  {
+	    throw std::runtime_error ("Freeflyer joints not handled yet.");
+	    break;
+	  }
+	default:
+	  throw std::runtime_error ("Incorrect joint type");
+	}
     }
 
     Joint::Joint (Joint& joint):
