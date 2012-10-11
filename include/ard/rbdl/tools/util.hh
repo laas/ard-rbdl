@@ -53,7 +53,6 @@ namespace ard
     {
       boost::shared_ptr<T> shPtr = wkPtr.lock ();
       if (shPtr)
-	// return shPtr->shared_from_this ();
 	return shPtr;
       else
 	throw std::runtime_error ("Null pointer.");
