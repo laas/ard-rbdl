@@ -108,12 +108,12 @@ namespace ard
     {
       name_ = joint.getName ();
       
-      jointShPtr_t parentJointShPtr;
-      getPtrFromBase (parentJointShPtr, joint.parentJoint ());
-      if (parentJointShPtr)
-	setParentJoint (parentJointShPtr);
-      else
-	throw std::runtime_error ("Null pointer to parent joint.");
+      if (parentJoint_.lock ())
+	{
+	  jointShPtr_t parentJointShPtr;
+	  getPtrFromBase (parentJointShPtr, joint.parentJoint ());
+	  setParentJoint (parentJointShPtr);
+	}
 
       for (unsigned i = 0; i < joint.countChildJoints (); ++i)
 	addChildJoint (*(joint.childJoint (i)));
@@ -144,12 +144,12 @@ namespace ard
 
       jacobian_ = joint.jacobianJointWrtConfig ();
 
-      bodyShPtr_t linkedBodyShPtr;
-      getPtrFromBase (linkedBodyShPtr, joint.linkedBody ());
-      if (linkedBodyShPtr)
-	setLinkedBody (*linkedBodyShPtr);
-      else
-	throw std::runtime_error ("Null pointer to linked body.");
+      if (linkedBody_)
+	{
+	  bodyShPtr_t linkedBodyShPtr;
+	  getPtrFromBase (linkedBodyShPtr, joint.linkedBody ());
+	  setLinkedBody (*linkedBodyShPtr);
+	}
     }
     
     Joint::~Joint ()
