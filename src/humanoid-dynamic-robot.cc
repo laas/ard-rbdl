@@ -78,6 +78,11 @@ namespace ard
       return dynamicRobot_->jointVector ();
     }
 
+    rbdlModel_t HumanoidDynamicRobot::rbdlModel () const
+    {
+      return dynamicRobot_->rbdlModel ();
+    }
+
     std::vector<to_pointer<CjrlJoint>::type >
     HumanoidDynamicRobot::jointsBetween (const CjrlJoint& startJoint,
 					 const CjrlJoint& endJoint) const
