@@ -361,9 +361,9 @@ namespace ard
       /// \brief acceleration attribute.
       vectorN acceleration_;
       /// \brief forces attribute.
-      vectorN forces_;
+      matrixNxP forces_;
       /// \brief torques attribute.
-      vectorN torques_;
+      matrixNxP torques_;
       /// \brief jointTorques attribute.
       vectorN jointTorques_;
       /// \brief center of mass position attribute.
