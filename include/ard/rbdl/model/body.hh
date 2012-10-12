@@ -59,6 +59,12 @@ namespace ard
       /// \brief Destructor.
       virtual ~Body ();
 
+      /// \brief Get body name.
+      virtual std::string getName () const;
+
+      /// \brief Set body name.
+      virtual void setName (const std::string& name);
+
       /// \brief Get underlying rbdl body.
       virtual rbdlBody_t rbdlBody () const;
 
@@ -91,6 +97,8 @@ namespace ard
       virtual to_pointer<const CjrlJoint>::type joint () const;
 	
     private:
+      /// \brief Name attribute.
+      std::string name_;
       /// \brief rbdl body attribute.
       rbdlBody_t rbdlBody_;
       /// \brief Weak pointer to parent joint attribute.

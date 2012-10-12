@@ -31,6 +31,7 @@ namespace ard
   {
     Body::Body () :
       boost::enable_shared_from_this<Body> (),
+      name_ (),
       rbdlBody_ (),
       joint_ ()
     {
@@ -41,6 +42,7 @@ namespace ard
 		const matrix3d& inertia,
 		joint_t& joint) : 
       boost::enable_shared_from_this<Body> (),
+      name_ (),
       rbdlBody_ (mass, com, inertia),
       joint_ ()
     {
@@ -51,6 +53,7 @@ namespace ard
     Body::Body (const Body& body) :
       boost::enable_shared_from_this<Body> ()
     {
+      name_ = body.getName ();
       rbdlBody_ = body.rbdlBody ();
 
       if (body.joint ())
@@ -66,6 +69,16 @@ namespace ard
     rbdlBody_t Body::rbdlBody () const
     {
       return rbdlBody_;
+    }
+
+    std::string Body::getName () const
+    {
+      return name_;
+    }
+
+    void Body::setName (const std::string& name)
+    {
+      name_ = name;
     }
 
     const vector3d& Body::localCenterOfMass () const
