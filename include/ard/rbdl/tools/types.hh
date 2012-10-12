@@ -32,6 +32,8 @@ typedef RigidBodyDynamics::Math::Matrix3d matrix3d;
 typedef Eigen::Matrix<double, 4, 4> matrix4d;
 typedef RigidBodyDynamics::Math::VectorNd vectorN;
 typedef RigidBodyDynamics::Math::MatrixNd matrixNxP;
+typedef RigidBodyDynamics::Math::SpatialTransform rbdlSpatialTransform_t;
+typedef RigidBodyDynamics::Math::SpatialVector rbdlSpatialVector_t;
 
 # include <abstract-robot-dynamics/traits/shared-pointer.hh>
 # include <abstract-robot-dynamics/abstract-robot-dynamics.hh>
