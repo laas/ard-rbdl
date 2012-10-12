@@ -27,3 +27,4 @@ ENDMACRO(ADD_TESTCASE)
 
 # Generated tests.
 ADD_TESTCASE(create-joint)
+ADD_TESTCASE(create-body)
