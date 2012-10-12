@@ -51,6 +51,9 @@ namespace ard
       /// \param wrist associated wrist joint
       explicit Hand (const jointShPtr_t& wrist);
 
+      /// \brief Copy constructor.
+      Hand (Hand& hand);
+
       /// \brief Destructor.
       virtual ~Hand ();
 

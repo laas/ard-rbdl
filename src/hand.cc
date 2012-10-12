@@ -59,6 +59,20 @@ namespace ard
     {
     }
 
+    Hand::Hand (Hand& hand) :
+      boost::enable_shared_from_this<Hand> ()
+    {
+      if (hand.associatedWrist ())
+	getPtrFromBase (wristJoint_, hand.associatedWrist ());
+      else
+	wristJoint_.reset ();
+
+      hand.getCenter (center_);
+      hand.getThumbAxis (thumbAxis_);
+      hand.getForeFingerAxis (foreFingerAxis_);
+      hand.getPalmNormal (palmNormal_);
+    }
+
     Hand::~Hand ()
     {
     }
