@@ -51,6 +51,9 @@ namespace ard
       /// \param ankle associated ankle joint.
       explicit Foot (const jointShPtr_t& ankle);
 
+      /// \brief Copy constructor.
+      Foot (Foot& foot);
+
       /// \brief Destructor
       virtual ~Foot ();
 
