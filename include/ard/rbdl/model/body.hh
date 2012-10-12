@@ -56,6 +56,9 @@ namespace ard
       /// \brief Destructor.
       virtual ~Body ();
 
+      /// \brief Get underlying rbdl body.
+      virtual rbdlBody_t rbdlBody () const;
+
       /// \brief Get position of center of mass in joint local
       /// reference frame.
       virtual const vector3d& localCenterOfMass () const;

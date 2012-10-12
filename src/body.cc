@@ -52,6 +52,11 @@ namespace ard
     {
     }
 
+    rbdlBody_t Body::rbdlBody () const
+    {
+      return rbdlBody_;
+    }
+
     const vector3d& Body::localCenterOfMass () const
     {
       return rbdlBody_.mCenterOfMass;
