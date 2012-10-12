@@ -319,6 +319,34 @@ namespace ard
       /// \brief Set the root joint of the robot.
       virtual void rootJoint (joint_t& joint);
 
+      /// \brief Get a vector containing share pointers to all joints.
+      virtual void jointVector (jointShPtrs_t& jointVector) const;
+
+      /// \brief Get a vector containing weak pointers to all joints.
+      virtual void jointVector (jointWkPtrs_t& jointVector) const;
+
+      /// \brief Get the velocity of the center of mass.
+      virtual const vector3d& velocityCenterOfMass () const;
+
+      /// \brief Get the acceleration of the center of mass.
+      virtual const vector3d& accelerationCenterOfMass () const;
+
+      /// \brief Get the linear momentum of the robot.
+      virtual const vector3d& linearMomentumRobot () const;
+
+      /// \brief Get the time-derivative of the linear momentum.
+      virtual const vector3d& derivativeLinearMomentum () const;
+
+      /// \brief Get the angular momentum of the robot at the center of mass.
+      virtual const vector3d& angularMomentumRobot () const;
+
+      /// \brief Get the time-derivative of the angular momentum at the
+      /// center of mass.
+      virtual const vector3d& derivativeAngularMomentum () const;
+
+      /// \brief Get the vector of actuated joints.
+      void actuatedJoints (jointWkPtrs_t& actuatedJoints) const;
+
     private:
       /// \brief Root joint pointer attribute.
       jointShPtr_t rootJoint_;

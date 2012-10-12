@@ -380,5 +380,62 @@ namespace ard
       rootJoint_ = joint.shared_from_this ();
     }
 
+    void DynamicRobot::jointVector (jointShPtrs_t& jointVector) const
+    {
+      jointVector.resize (jointVector_.size ());
+      for (unsigned i = 0; i < jointVector_.size (); ++i)
+	{
+	  jointShPtr_t joint = getSharedPointer (jointVector_[i]);
+	  if (joint)
+	    jointVector[i] = joint;
+	  else
+	    throw std::runtime_error ("Null pointer to joint.");
+	}
+    }
+
+    void DynamicRobot::jointVector (jointWkPtrs_t& jointVector) const
+    {
+      jointVector.resize (jointVector_.size ());
+      for (unsigned i = 0; i < jointVector_.size (); ++i)
+	jointVector[i] = jointVector_[i];
+    }
+
+    const vector3d& DynamicRobot::velocityCenterOfMass () const
+    {
+      return velocityCenterOfMass_;
+    }
+
+    const vector3d& DynamicRobot::accelerationCenterOfMass () const
+    {
+      return accelerationCenterOfMass_;
+    }
+
+    const vector3d& DynamicRobot::linearMomentumRobot () const
+    {
+      return linearMomentumRobot_;
+    }
+
+    const vector3d& DynamicRobot::derivativeLinearMomentum () const
+    {
+      return derivativeLinearMomentum_;
+    }
+
+    const vector3d& DynamicRobot::angularMomentumRobot () const
+    {
+      return angularMomentumRobot_;
+    }
+
+    const vector3d& DynamicRobot::derivativeAngularMomentum () const
+    {
+      return derivativeAngularMomentum_;
+    }
+
+    void DynamicRobot::actuatedJoints (jointWkPtrs_t& actuatedJoints) const
+    {
+      actuatedJoints.resize (actuatedJoints_.size ());
+      for (unsigned i = 0; i < actuatedJoints_.size (); ++i)
+	actuatedJoints[i] = actuatedJoints_[i];
+    }
+
   } // end of namespace rbdl.
 } // end of namespace ard.
