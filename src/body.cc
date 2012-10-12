@@ -48,6 +48,17 @@ namespace ard
       joint_ = jointWkPtr_t (shPtr);
     }
 
+    Body::Body (Body& body) :
+      boost::enable_shared_from_this<Body> ()
+    {
+      rbdlBody_ = body.rbdlBody ();
+
+      if (body.joint ())
+	  getPtrFromBase (joint_, body.joint ());
+      else
+	joint_.reset ();
+    }
+
     Body::~Body ()
     {
     }

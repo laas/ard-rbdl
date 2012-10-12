@@ -53,6 +53,9 @@ namespace ard
 		     const matrix3d& inertia,
 		     joint_t& joint);
 
+      /// \brief Copy constructor.
+      Body (Body& body);
+
       /// \brief Destructor.
       virtual ~Body ();
 
