@@ -428,6 +428,48 @@ namespace ard
 
       /// \}
 
+    protected:
+      /// \brief Get a pointer to the waist.
+      virtual void waist (jointWkPtr_t& waist) const;
+
+      /// \brief Get a pointer to the chest.
+      ///
+      ///\note for some humanoid robots, the waist and the chest are
+      ///the same joints.
+      virtual void chest (jointWkPtr_t& chest) const;
+
+      /// \brief Get a pointer to the left wrist.
+      virtual void leftWrist (jointWkPtr_t& leftWrist) const;
+
+      /// \brief Get a pointer to the right wrist.
+      virtual void rightWrist (jointWkPtr_t& rightWrist) const;
+
+      /// \brief Set the pointer to the right hand.
+      virtual void rightHand (handShPtr_t& rightHand) const;
+
+      /// \brief Set the pointer to the left hand.
+      virtual void leftHand (handShPtr_t& leftHand) const;
+
+      /// \brief Get the hand clench value.
+      /// This is a scalar value ranging between 0 and 1 which
+      /// describes the hand clench (0 for open and 1 for closed hand)
+      virtual double getHandClench (to_pointer<CjrlHand>::type hand) const;
+
+      /// \brief Get a pointer to the left ankle.
+      virtual void leftAnkle (jointWkPtr_t& leftAnkle) const;
+
+      /// \brief Get a pointer to the right ankle.
+      virtual void rightAnkle (jointWkPtr_t& rightAnkle) const;
+
+      /// \brief Set the pointer to the left foot joint.
+      virtual void leftFoot (footShPtr_t& leftFoot) const;
+
+      /// \brief Set the pointer to the right foot joint.
+      virtual void rightFoot (footShPtr_t& rightFoot) const;
+
+      /// \brief Get gaze joint.
+      virtual void gazeJoint (jointWkPtr_t& gazeJoint) const;
+
     private:
       /// \brief Dynamic robot attribute.
       dynamicRobotShPtr_t dynamicRobot_;

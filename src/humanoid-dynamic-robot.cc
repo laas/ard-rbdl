@@ -500,6 +500,75 @@ namespace ard
     {
       return zeroMomentPoint_;
     }
+
+    void HumanoidDynamicRobot::waist (jointWkPtr_t& waist) const
+    {
+      waist = getSharedPointer (waist_);
+    }
+
+    void HumanoidDynamicRobot::chest (jointWkPtr_t& chest) const
+    {
+      chest = getSharedPointer (chest_);
+    }
+
+    void HumanoidDynamicRobot::leftWrist (jointWkPtr_t& leftWrist) const
+    {
+      leftWrist = getSharedPointer (leftWrist_);
+    }
+
+    void HumanoidDynamicRobot::rightWrist (jointWkPtr_t& rightWrist) const
+    {
+      rightWrist = getSharedPointer (rightWrist_);
+    }
+
+    void HumanoidDynamicRobot::rightHand (handShPtr_t& rightHand) const
+    {
+      rightHand = rightHand_;
+    }
+
+    void HumanoidDynamicRobot::leftHand (handShPtr_t& leftHand) const
+    {
+      leftHand = leftHand_;
+    }
+
+    double
+    HumanoidDynamicRobot::getHandClench (to_pointer<CjrlHand>::type hand) const
+    {
+      ardHandPtr_t rightHandPtr = getUnsafePointer (rightHand_);
+      ardHandPtr_t leftHandPtr = getUnsafePointer (leftHand_);
+      ardHandPtr_t handPtr = getUnsafePointer (hand);
+      if (rightHandPtr == handPtr)
+	return rightHandClench_;
+      else if (leftHandPtr == handPtr)
+	return leftHandClench_;
+      else
+	throw std::runtime_error ("Hand pointer not found in robot.");
+    }
+  
+    void HumanoidDynamicRobot::leftAnkle (jointWkPtr_t& leftAnkle) const
+    {
+      leftAnkle = getSharedPointer (leftAnkle_);
+    }
+
+    void HumanoidDynamicRobot::rightAnkle (jointWkPtr_t& rightAnkle) const
+    {
+      rightAnkle = getSharedPointer (rightAnkle_);
+    }
+
+    void HumanoidDynamicRobot::leftFoot (footShPtr_t& leftFoot) const
+    {
+      leftFoot = leftFoot_;
+    }
+
+    void HumanoidDynamicRobot::rightFoot (footShPtr_t& rightFoot) const
+    {
+      rightFoot = rightFoot_;
+    }
+
+    void HumanoidDynamicRobot::gazeJoint (jointWkPtr_t& gazeJoint) const
+    {
+      gazeJoint = getSharedPointer (gazeJoint_);
+    }
   
   } // end of namespace rbdl.
 } // end of namespace ard.
