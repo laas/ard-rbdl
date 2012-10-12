@@ -94,7 +94,13 @@ namespace ard
 	  }
 	case JOINT_TYPE_FREEFLYER:
 	  {
-	    throw std::runtime_error ("Freeflyer joints not handled yet.");
+	    rbdlJoint_
+	      = rbdlJoint_t (rbdlSpatialVector_t (0., 0., 0., 1., 0., 0.),
+			     rbdlSpatialVector_t (0., 0., 0., 0., 1., 0.),
+			     rbdlSpatialVector_t (0., 0., 0., 0., 0., 1.),
+			     rbdlSpatialVector_t (0., 0., 1., 0., 0., 0.),
+			     rbdlSpatialVector_t (0., 1., 0., 0., 0., 0.),
+			     rbdlSpatialVector_t (1., 0., 0., 0., 0., 0.));
 	    break;
 	  }
 	default:
