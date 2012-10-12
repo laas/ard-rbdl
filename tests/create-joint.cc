@@ -41,9 +41,11 @@ BOOST_AUTO_TEST_CASE (create_joint)
   
   ardJointShPtr_t jointRotation = factory.createJointRotation (mat);
   ardJointShPtr_t jointTranslation = factory.createJointTranslation (mat);
+  ardJointShPtr_t jointFreeflyer = factory.createJointFreeflyer (mat);
 
   BOOST_CHECK_EQUAL (!jointRotation, 0);
   BOOST_CHECK_EQUAL (!jointTranslation, 0);
+  BOOST_CHECK_EQUAL (!jointFreeflyer, 0);
 
   // Create joint with copy constructor.
   jointShPtr_t jointRotationDynCast;
