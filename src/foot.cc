@@ -57,7 +57,7 @@ namespace ard
     {
     }
 
-    Foot::Foot (Foot& foot) :
+    Foot::Foot (const Foot& foot) :
       boost::enable_shared_from_this<Foot> ()
     {
       if (foot.associatedAnkle ())

@@ -52,7 +52,7 @@ namespace ard
       explicit Hand (const jointShPtr_t& wrist);
 
       /// \brief Copy constructor.
-      Hand (Hand& hand);
+      Hand (const Hand& hand);
 
       /// \brief Destructor.
       virtual ~Hand ();

@@ -48,7 +48,7 @@ namespace ard
       joint_ = jointWkPtr_t (shPtr);
     }
 
-    Body::Body (Body& body) :
+    Body::Body (const Body& body) :
       boost::enable_shared_from_this<Body> ()
     {
       rbdlBody_ = body.rbdlBody ();

@@ -52,7 +52,7 @@ namespace ard
       explicit Foot (const jointShPtr_t& ankle);
 
       /// \brief Copy constructor.
-      Foot (Foot& foot);
+      Foot (const Foot& foot);
 
       /// \brief Destructor
       virtual ~Foot ();

@@ -102,7 +102,7 @@ namespace ard
 	}
     }
 
-    Joint::Joint (Joint& joint):
+    Joint::Joint (const Joint& joint):
       boost::enable_shared_from_this<Joint> (),
       acceleration_ (vector3d (0, 0, 0), vector3d (0, 0, 0))
     {

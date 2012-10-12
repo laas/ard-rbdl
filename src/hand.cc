@@ -59,7 +59,7 @@ namespace ard
     {
     }
 
-    Hand::Hand (Hand& hand) :
+    Hand::Hand (const Hand& hand) :
       boost::enable_shared_from_this<Hand> ()
     {
       if (hand.associatedWrist ())

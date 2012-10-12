@@ -53,7 +53,7 @@ namespace ard
 		      const matrix4d& initialPosition);
 
       /// \brief Copy Constructor.
-      Joint (Joint& joint);
+      Joint (const Joint& joint);
 
       /// \brief Destructor
       virtual ~Joint ();

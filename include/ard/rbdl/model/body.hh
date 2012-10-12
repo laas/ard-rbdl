@@ -54,7 +54,7 @@ namespace ard
 		     joint_t& joint);
 
       /// \brief Copy constructor.
-      Body (Body& body);
+      Body (const Body& body);
 
       /// \brief Destructor.
       virtual ~Body ();
