@@ -53,6 +53,29 @@ namespace ard
     {
     }
 
+    HumanoidDynamicRobot::HumanoidDynamicRobot
+    (const HumanoidDynamicRobot& robot) :
+      boost::enable_shared_from_this<HumanoidDynamicRobot> ()
+    {
+      dynamicRobot_ = robot.dynamicRobot ();
+      robot.waist (waist_);
+      robot.chest (chest_);
+      robot.leftWrist (leftWrist_);
+      robot.rightWrist (rightWrist_);
+      robot.leftHand (leftHand_);
+      robot.rightHand (rightHand_);
+      leftHandClench_ = robot.getHandClench (robot.leftHand ());
+      rightHandClench_ = robot.getHandClench (robot.rightHand ());
+      robot.leftAnkle (leftAnkle_);
+      robot.rightAnkle (rightAnkle_);
+      robot.leftFoot (leftFoot_);
+      robot.rightFoot (rightFoot_);
+      robot.gazeJoint (gazeJoint_);
+      gazeOrigin_ = robot.gazeOrigin ();
+      gazeDirection_ = robot.gazeDirection ();
+      zeroMomentPoint_ = robot.zeroMomentumPoint ();
+    }
+
     HumanoidDynamicRobot::~HumanoidDynamicRobot ()
     {
     }

@@ -46,6 +46,9 @@ namespace ard
       /// \brief Default construcor.
       explicit HumanoidDynamicRobot ();
 
+      /// \brief Copy constructor.
+      HumanoidDynamicRobot (const HumanoidDynamicRobot& robot);
+
       /// \brief Destructor.
       virtual ~HumanoidDynamicRobot();
 
