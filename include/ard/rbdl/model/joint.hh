@@ -291,6 +291,9 @@ namespace ard
       /// \brief Get a pointer to the linked body (if any).
       virtual to_pointer<CjrlBody>::type linkedBody () const;
 
+      /// \brief Get a shared pointer to the linked body.
+      virtual void linkedBody (bodyShPtr_t& body) const;
+
       /// \brief Link a body to the joint.
       virtual void setLinkedBody (CjrlBody& inBody);
 

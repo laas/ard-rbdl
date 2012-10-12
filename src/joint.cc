@@ -342,6 +342,11 @@ namespace ard
       return linkedBody_;
     }
 
+    void Joint::linkedBody (bodyShPtr_t& body) const
+    {
+      body = linkedBody_;
+    }
+  
     void Joint::setLinkedBody (CjrlBody& body)
     {
       bodyPtr_t bodyPtr;
