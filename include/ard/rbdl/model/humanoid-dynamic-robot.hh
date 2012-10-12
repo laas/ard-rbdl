@@ -67,6 +67,9 @@ namespace ard
       /// \brief Get a vector containing all the joints.
       virtual std::vector<to_pointer<CjrlJoint>::type > jointVector ();
 
+      /// \brief Get underlying dynamic robot.
+      virtual dynamicRobotShPtr_t dynamicRobot () const;
+
       /// \brief Get underlying rbdl model.
       virtual rbdlModel_t rbdlModel () const;
 

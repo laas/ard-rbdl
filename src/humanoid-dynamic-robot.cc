@@ -78,6 +78,11 @@ namespace ard
       return dynamicRobot_->jointVector ();
     }
 
+    dynamicRobotShPtr_t HumanoidDynamicRobot::dynamicRobot () const
+    {
+      return dynamicRobot_;
+    }
+
     rbdlModel_t HumanoidDynamicRobot::rbdlModel () const
     {
       return dynamicRobot_->rbdlModel ();
