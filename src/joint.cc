@@ -194,6 +194,11 @@ namespace ard
       return childJoints_[jointRank];
     }
 
+    jointShPtrs_t Joint::childJoints () const
+    {
+      return childJoints_;
+    }
+
     rbdlJoint_t Joint::rbdlJoint () const
     {
       return rbdlJoint_;

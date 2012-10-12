@@ -91,6 +91,9 @@ namespace ard
       virtual to_pointer<CjrlJoint>::type
       childJoint (unsigned int jointRank) const;
 
+      /// \brief Get child joints.
+      virtual jointShPtrs_t childJoints () const;
+
       /// \brief Get underlying rbdl joint.
       virtual rbdlJoint_t rbdlJoint () const;
 
