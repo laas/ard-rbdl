@@ -52,10 +52,7 @@ namespace ard
     inline boost::shared_ptr<T> getSharedPointer (boost::weak_ptr<T> wkPtr)
     {
       boost::shared_ptr<T> shPtr = wkPtr.lock ();
-      if (shPtr)
-	return shPtr;
-      else
-	throw std::runtime_error ("Null pointer.");
+      return shPtr;
     }
 
     template <typename T, typename U>
@@ -80,10 +77,7 @@ namespace ard
     {
       boost::shared_ptr<T> shPtr;
       getPtrFromBase (shPtr, srcPtr);
-      if (shPtr)
-	dstPtr = boost::weak_ptr<T> (shPtr);
-      else
-	throw std::runtime_error ("Null pointer.");
+      dstPtr = boost::weak_ptr<T> (shPtr);
       return;
     }
 

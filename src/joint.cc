@@ -107,13 +107,11 @@ namespace ard
       acceleration_ (vector3d (0, 0, 0), vector3d (0, 0, 0))
     {
       name_ = joint.getName ();
-      
-      if (parentJoint_.lock ())
-	{
-	  jointShPtr_t parentJointShPtr;
-	  getPtrFromBase (parentJointShPtr, joint.parentJoint ());
-	  setParentJoint (parentJointShPtr);
-	}
+
+      if (joint.parentJoint ())
+	getPtrFromBase (parentJoint_, joint.parentJoint ());
+      else
+	parentJoint_.reset ();
 
       for (unsigned i = 0; i < joint.countChildJoints (); ++i)
 	addChildJoint (*(joint.childJoint (i)));
@@ -144,12 +142,10 @@ namespace ard
 
       jacobian_ = joint.jacobianJointWrtConfig ();
 
-      if (linkedBody_)
-	{
-	  bodyShPtr_t linkedBodyShPtr;
-	  getPtrFromBase (linkedBodyShPtr, joint.linkedBody ());
-	  setLinkedBody (*linkedBodyShPtr);
-	}
+      if (joint.linkedBody ())
+	  getPtrFromBase (linkedBody_, joint.linkedBody ());
+      else
+	linkedBody_.reset ();
     }
     
     Joint::~Joint ()
@@ -208,7 +204,7 @@ namespace ard
       jointShPtr_t ptr
 	= boost::const_pointer_cast<joint_t> (shared_from_this ());
       fromRootToThis.push_back (ptr);
-      ardJointShPtr_t parentJoint = getSharedPointer (parentJoint_);
+      ardJointShPtr_t parentJoint = this->parentJoint ();
       while (parentJoint != 0)
 	{
 	  fromRootToThis.insert(fromRootToThis.begin (), parentJoint);
