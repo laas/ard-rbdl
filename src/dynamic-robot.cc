@@ -91,12 +91,13 @@ namespace ard
       if (!buildJointVector (rootJoint_))
 	return false;
 
+      // Initialize rbdl model. This method is called before building
+      // the model.
+      rbdlModel_.Init ();
+
       // Build rbdl model.
       if (!buildRbdlModel ())
 	return false;
-
-      // Initialize rbdl model.
-      rbdlModel_.Init ();
 
       return true;
     }
