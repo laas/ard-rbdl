@@ -16,7 +16,7 @@
 // License along with ard-rbdl.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#define BOOST_TEST_MODULE create-joint
+#define BOOST_TEST_MODULE create-body
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/output_test_stream.hpp>
@@ -25,7 +25,7 @@
 #include <ard/rbdl/model/body.hh>
 #include <ard/rbdl/model/robot-dynamics-object-factory.hh>
 
-BOOST_AUTO_TEST_CASE (create_joint)
+BOOST_AUTO_TEST_CASE (create_body)
 {
   using namespace ard::rbdl;
 
