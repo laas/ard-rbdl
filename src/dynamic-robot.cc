@@ -87,7 +87,18 @@ namespace ard
 
     bool DynamicRobot::initialize ()
     {
-      throw std::runtime_error ("Method not supported.");
+      // Build joint vector.
+      if (!buildJointVector (rootJoint_))
+	return false;
+
+      // Build rbdl model.
+      if (!buildRbdlModel ())
+	return false;
+
+      // Initialize rbdl model.
+      rbdlModel_.Init ();
+
+      return true;
     }
 
     void DynamicRobot::rootJoint (CjrlJoint& joint)
@@ -400,6 +411,75 @@ namespace ard
 	  getPtrFromBase (jointWkPtr, ardJoint);
 	  actuatedJoints_.push_back (jointWkPtr);
 	}
+    }
+
+    bool DynamicRobot::buildJointVector (const jointShPtr_t& joint)
+    {
+      jointVector_.push_back (jointWkPtr_t (joint));
+      BOOST_FOREACH (jointShPtr_t childJoint, joint->childJoints ())
+	buildJointVector (childJoint);
+
+      return true;
+    }
+
+    bool DynamicRobot::buildRbdlModel ()
+    {
+      jointShPtrs_t jointVector;
+      this->jointVector (jointVector);
+      
+      BOOST_FOREACH (jointShPtr_t joint, jointVector)
+	{
+	  // Retrieve rbdl joint.
+	  assert (!!joint && "Null pointer to joint.");
+	  rbdlJoint_t rbdlJoint = joint->rbdlJoint ();
+
+	  // Retrieve rbdl parent body.
+	  jointShPtr_t parentJoint;
+	  joint->parentJoint (parentJoint);
+	  assert (!!parentJoint && "Null pointer to parent joint.");
+	  bodyShPtr_t parentBody;
+	  parentJoint->linkedBody (parentBody);
+
+	  // Root joint does not have a parent, skip.
+	  if (parentBody)
+	    {
+	      // Retrieve parent body id.
+	      std::string parentBodyName = parentBody->getName ();
+	      unsigned int parentId
+		= rbdlModel_.GetBodyId (parentBodyName.c_str ());
+
+	      // Compute parent joint transformation in joint frame.
+	      matrix4d world_T_joint = joint->initialPosition ();
+	      matrix4d world_T_pJoint = parentJoint->initialPosition ();
+	      matrix4d joint_T_world = world_T_joint.inverse ();
+	      matrix4d joint_T_pJoint = joint_T_world * world_T_pJoint;
+	      matrix3d E = joint_T_pJoint.block<3,3> (0,0);
+	      vector3d r = - joint_T_pJoint.block<3,1> (0,3);
+	      rbdlSpatialTransform_t joint_X_pjoint (E, r);
+
+	      // Retrieve rbdl body.
+	      bodyShPtr_t body;
+	      joint->linkedBody (body);
+	      assert (!!body && "Null pointer to body.");
+	      rbdlBody_t rbdlBody = body->rbdlBody (); 
+
+	      // Retrieve body name.
+	      // FIXME: Add name getter and setter to abstract interface
+	      // for body class later.
+	      std::string bodyName = body->getName ();
+
+	      // Attach body and joint to rbdl model attribute.
+	      rbdlModel_.AddBody (parentId,
+				  joint_X_pjoint,
+				  rbdlJoint,
+				  rbdlBody,
+				  bodyName);
+	    }
+	  else
+	    continue;
+	}
+
+      return true;
     }
 
     void DynamicRobot::rootJoint (joint_t& joint)

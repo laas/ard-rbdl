@@ -316,6 +316,23 @@ namespace ard
       /// \}
 
     protected:
+      /// \brief Build joint vector by exploring tree starting from
+      /// a specified joint (usually the root joint).
+      ///
+      /// Result can be retrieved with associated getter. It contains
+      /// all joints, including fixed ones.
+      virtual bool buildJointVector (const jointShPtr_t& joint);
+
+      /// \brief Build rbdl model attribute.
+      ///
+      /// This method builds the rbdl model from the joint vector.
+      ///
+      /// \warning Make sure joint vector is built before calling this
+      /// method.
+      ///
+      /// \retval true if success, false if failure
+      virtual bool buildRbdlModel ();
+
       /// \brief Set the root joint of the robot.
       virtual void rootJoint (joint_t& joint);
 
