@@ -78,6 +78,9 @@ namespace ard
       /// still exist once the shared pointer has been deleted.
       virtual to_pointer<CjrlJoint>::type parentJoint () const;
 
+      /// \brief Get shared pointer to parent joint.
+      virtual void parentJoint (jointShPtr_t& joint) const;
+
       /// \brief Add a child joint.
       virtual bool addChildJoint (CjrlJoint& joint);
 

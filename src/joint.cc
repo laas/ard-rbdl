@@ -167,6 +167,11 @@ namespace ard
       return getSharedPointer (parentJoint_);
     }
 
+    void Joint::parentJoint (jointShPtr_t& joint) const
+    {
+      joint = getSharedPointer (parentJoint_);
+    }
+  
     bool Joint::addChildJoint (CjrlJoint& joint)
     {
       // Link joints in abstract robot dynamics. The rbdl joints
