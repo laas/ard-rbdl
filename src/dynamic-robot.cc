@@ -94,6 +94,7 @@ namespace ard
       // Initialize rbdl model. This method is called before building
       // the model.
       rbdlModel_.Init ();
+      rbdlModel_.gravity = gravity;
 
       // Build rbdl model.
       if (!buildRbdlModel ())
