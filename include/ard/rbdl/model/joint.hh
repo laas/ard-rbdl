@@ -298,6 +298,9 @@ namespace ard
       virtual void setLinkedBody (CjrlBody& inBody);
 
     protected:
+      /// \brief Get weak pointer to parent joint.
+      virtual void parentJoint (jointWkPtr_t& joint) const;
+
       /// \brief Set the parent joint.
       virtual void setParentJoint (jointShPtr_t joint);
 

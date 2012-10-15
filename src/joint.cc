@@ -114,10 +114,7 @@ namespace ard
     {
       name_ = joint.getName ();
 
-      if (joint.parentJoint ())
-	getPtrFromBase (parentJoint_, joint.parentJoint ());
-      else
-	parentJoint_.reset ();
+      joint.parentJoint (parentJoint_);
 
       for (unsigned i = 0; i < joint.countChildJoints (); ++i)
 	addChildJoint (*(joint.childJoint (i)));
@@ -361,6 +358,11 @@ namespace ard
 	return setLinkedBody (*bodyPtr);
       else
 	throw std::runtime_error ("Null pointer to body.");
+    }
+
+    void Joint::parentJoint (jointWkPtr_t& joint) const
+    {
+      joint = parentJoint_;
     }
 
     void Joint::setParentJoint (jointShPtr_t joint)
