@@ -55,6 +55,9 @@ namespace ard
       /// \brief Copy Constructor.
       Joint (const Joint& joint);
 
+      /// \brief Assignment operator.
+      Joint operator= (const Joint& joint);
+
       /// \brief Destructor
       virtual ~Joint ();
 

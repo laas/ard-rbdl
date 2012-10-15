@@ -147,6 +147,46 @@ namespace ard
 
       joint.linkedBody (linkedBody_);
     }
+
+    Joint Joint::operator= (const Joint& joint)
+    {
+      name_ = joint.getName ();
+
+      joint.parentJoint (parentJoint_);
+
+      for (unsigned i = 0; i < joint.countChildJoints (); ++i)
+	addChildJoint (*(joint.childJoint (i)));
+
+      rbdlJoint_ = joint.rbdlJoint ();
+      rankInConfiguration_ = joint.rankInConfiguration ();
+      initialPosition_ = joint.initialPosition ();
+      currentTransformation_ = joint.currentTransformation ();
+      velocity_ = joint.jointVelocity();
+      acceleration_ = joint.jointAcceleration ();
+      numberDof_ = joint.numberDof ();
+
+      lowerBound_.resize (joint.numberDof ());
+      upperBound_.resize (joint.numberDof ());
+      lowerVelocityBound_.resize (joint.numberDof ());
+      upperVelocityBound_.resize (joint.numberDof ());
+      lowerTorqueBound_.resize (joint.numberDof ());
+      upperTorqueBound_.resize (joint.numberDof ());
+      for (unsigned i = 0; i < joint.numberDof (); ++i)
+	{
+	  lowerBound_[i] = joint.lowerBound (i);
+	  upperBound_[i] = joint.upperBound (i);
+	  lowerVelocityBound_[i] = joint.lowerVelocityBound (i);
+	  upperVelocityBound_[i] = joint.upperVelocityBound (i);
+	  lowerTorqueBound_[i] = joint.lowerTorqueBound (i);
+	  upperTorqueBound_[i] = joint.upperTorqueBound (i);
+	}
+
+      jacobian_ = joint.jacobianJointWrtConfig ();
+
+      joint.linkedBody (linkedBody_);
+
+      return *this;
+    }
     
     Joint::~Joint ()
     {
