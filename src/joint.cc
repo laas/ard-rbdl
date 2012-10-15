@@ -145,10 +145,7 @@ namespace ard
 
       jacobian_ = joint.jacobianJointWrtConfig ();
 
-      if (joint.linkedBody ())
-	  getPtrFromBase (linkedBody_, joint.linkedBody ());
-      else
-	linkedBody_.reset ();
+      joint.linkedBody (linkedBody_);
     }
     
     Joint::~Joint ()
