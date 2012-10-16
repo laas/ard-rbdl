@@ -84,6 +84,10 @@ namespace ard
       ///
       /// \param inCoordinates coordinates of the ankle joint center
       virtual void setAnklePositionInLocalFrame (const vector3d& inCoordinates);
+      
+    protected:
+      /// \brief Get the ankle to which the foot is attached
+      virtual void associatedAnkle (jointWkPtr_t& ankle) const;
 
     private:
       // Associated ankle joint attribute.

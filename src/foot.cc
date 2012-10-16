@@ -60,11 +60,7 @@ namespace ard
     Foot::Foot (const Foot& foot) :
       boost::enable_shared_from_this<Foot> ()
     {
-      if (foot.associatedAnkle ())
-	getPtrFromBase (ankleJoint_, foot.associatedAnkle ());
-      else
-	ankleJoint_.reset ();
-
+      foot.associatedAnkle (ankleJoint_);
       foot.getSoleSize (soleLength_, soleWidth_);
       foot.getAnklePositionInLocalFrame (ankleInLocalFrame_);
     }
@@ -105,5 +101,10 @@ namespace ard
       ankleInLocalFrame_ = coordinates;
     }
 
+    void Foot::associatedAnkle (jointWkPtr_t& ankle) const
+    {
+      ankle = ankleJoint_;
+    }
+  
   } // end of namespace rbdl.
 } // end of namespace ard.
