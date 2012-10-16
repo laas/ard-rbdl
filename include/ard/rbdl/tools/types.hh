@@ -48,7 +48,7 @@ namespace ard
   namespace rbdl
   {
     // Define gravity vector.
-    static const vector3d gravity (0, 0, -9.81);
+    static const vector3d defaultGravity (0, 0, -9.81);
 
     // RBDL typedefs.
     ARD_RBDL_DEFINE_TYPES (RigidBodyDynamics::Joint, rbdlJoint);

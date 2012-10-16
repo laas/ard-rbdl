@@ -75,6 +75,13 @@ namespace ard
       /// \brief Get underlying rbdl model.
       virtual rbdlModel_t rbdlModel () const;
 
+      /// \brief Get gravity vector. It is set to a default value on
+      /// initialization.
+      virtual vector3d gravity () const;
+
+      /// \brief Set gravity vector.
+      virtual void gravity (const vector3d& gravity);
+
       /// \brief Get the chain of joints between two joints
       /// \param inStartJoint First joint.
       /// \param inEndJoint Second joint.

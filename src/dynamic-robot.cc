@@ -113,7 +113,7 @@ namespace ard
       // Initialize rbdl model. This method is called before building
       // the model.
       rbdlModel_.Init ();
-      toRbdlFromMal (rbdlModel_.gravity, gravity);
+      toRbdlFromMal (rbdlModel_.gravity, defaultGravity);
 
       // Build rbdl model.
       if (!buildRbdlModel ())
@@ -148,6 +148,16 @@ namespace ard
     rbdlModel_t DynamicRobot::rbdlModel () const
     {
       return rbdlModel_;
+    }
+
+    vector3d DynamicRobot::gravity () const
+    {
+      return toMalFromRbdl (rbdlModel_.gravity);
+    }
+
+    void DynamicRobot::gravity (const vector3d& gravity)
+    {
+      rbdlModel_.gravity = toRbdlFromMal (gravity);
     }
 
     std::vector<to_pointer<CjrlJoint>::type >
