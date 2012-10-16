@@ -69,6 +69,17 @@ namespace ard
       hand.getPalmNormal (palmNormal_);
     }
 
+    Hand Hand::operator= (const Hand& hand)
+    {
+      hand.associatedWrist (wristJoint_);
+      hand.getCenter (center_);
+      hand.getThumbAxis (thumbAxis_);
+      hand.getForeFingerAxis (foreFingerAxis_);
+      hand.getPalmNormal (palmNormal_);
+      
+      return *this;
+    }
+
     Hand::~Hand ()
     {
     }

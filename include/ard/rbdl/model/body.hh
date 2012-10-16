@@ -56,6 +56,9 @@ namespace ard
       /// \brief Copy constructor.
       Body (const Body& body);
 
+      /// \brief Assignment operator.
+      Body operator= (const Body& body);
+
       /// \brief Destructor.
       virtual ~Body ();
 

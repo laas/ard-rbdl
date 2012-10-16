@@ -65,6 +65,15 @@ namespace ard
       foot.getAnklePositionInLocalFrame (ankleInLocalFrame_);
     }
 
+    Foot Foot::operator= (const Foot& foot)
+    {
+      foot.associatedAnkle (ankleJoint_);
+      foot.getSoleSize (soleLength_, soleWidth_);
+      foot.getAnklePositionInLocalFrame (ankleInLocalFrame_);
+
+      return *this;
+    }
+
     Foot::~Foot ()
     {
     }

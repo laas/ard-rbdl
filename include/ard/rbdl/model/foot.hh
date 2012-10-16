@@ -54,6 +54,9 @@ namespace ard
       /// \brief Copy constructor.
       Foot (const Foot& foot);
 
+      /// \brief Assignment operator.
+      Foot operator= (const Foot& foot);
+
       /// \brief Destructor
       virtual ~Foot ();
 

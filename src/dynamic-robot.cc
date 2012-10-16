@@ -77,8 +77,30 @@ namespace ard
       derivativeAngularMomentum_ = robot.derivativeAngularMomentum ();
       mass_ = robot.mass ();
       inertiaMatrix_ = robot.inertiaMatrix ();
-
       robot.actuatedJoints (actuatedJoints_);
+    }
+
+    DynamicRobot DynamicRobot::operator= (const DynamicRobot& robot)
+    {
+      robot.rootJoint (rootJoint_);
+      robot.jointVector (jointVector_);
+      rbdlModel_ = robot.rbdlModel ();
+      configuration_ = robot.currentConfiguration ();
+      velocity_ = robot.currentVelocity ();
+      acceleration_ = robot.currentAcceleration ();
+      forces_ = robot.currentForces ();
+      torques_ = robot.currentTorques ();
+      jointTorques_ = matrixNxP (robot.currentJointTorques ());
+      positionCenterOfMass_ = robot.positionCenterOfMass ();
+      velocityCenterOfMass_ = robot.velocityCenterOfMass ();
+      accelerationCenterOfMass_ = robot.accelerationCenterOfMass ();
+      linearMomentumRobot_ = robot.linearMomentumRobot ();
+      derivativeAngularMomentum_ = robot.derivativeAngularMomentum ();
+      mass_ = robot.mass ();
+      inertiaMatrix_ = robot.inertiaMatrix ();
+      robot.actuatedJoints (actuatedJoints_);
+
+      return *this;
     }
 
     bool DynamicRobot::initialize ()

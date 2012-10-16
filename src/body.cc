@@ -56,7 +56,15 @@ namespace ard
       name_ = body.getName ();
       rbdlBody_ = body.rbdlBody ();
       body.joint (joint_);
+    }
 
+    Body Body::operator= (const Body& body)
+    {
+      name_ = body.getName ();
+      rbdlBody_ = body.rbdlBody ();
+      body.joint (joint_);
+
+      return *this;
     }
 
     Body::~Body ()

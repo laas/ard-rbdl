@@ -49,6 +49,9 @@ namespace ard
       /// \brief Copy constructor.
       HumanoidDynamicRobot (const HumanoidDynamicRobot& robot);
 
+      /// \brief Assignment operator.
+      HumanoidDynamicRobot operator= (const HumanoidDynamicRobot& robot);
+
       /// \brief Destructor.
       virtual ~HumanoidDynamicRobot();
 

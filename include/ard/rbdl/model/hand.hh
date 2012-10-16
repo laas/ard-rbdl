@@ -54,6 +54,9 @@ namespace ard
       /// \brief Copy constructor.
       Hand (const Hand& hand);
 
+      /// \brief Assignment operator.
+      Hand operator= (const Hand& hand);
+
       /// \brief Destructor.
       virtual ~Hand ();
 
