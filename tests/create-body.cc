@@ -53,4 +53,7 @@ BOOST_AUTO_TEST_CASE (create_body)
   ardBodyShPtr_t bodyCopy (new body_t (*bodyDynCast));
 
   BOOST_CHECK_EQUAL (!bodyCopy, 0);
+
+  // Create body by assignment.
+  body_t bodyAssigned = *bodyDynCast;
 }

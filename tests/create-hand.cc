@@ -61,4 +61,7 @@ BOOST_AUTO_TEST_CASE (create_hand)
   ardHandShPtr_t handCopy (new hand_t (*handDynCast));
 
   BOOST_CHECK_EQUAL (!handCopy, 0);
+
+  // Create hand by assignment.
+  hand_t handAssigned = *handDynCast;
 }

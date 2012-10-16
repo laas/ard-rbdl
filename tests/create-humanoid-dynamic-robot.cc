@@ -49,4 +49,7 @@ BOOST_AUTO_TEST_CASE (create_humanoid_dynamic_robot)
     (new humanoidDynamicRobot_t (*robotDynCast));
 
   BOOST_CHECK_EQUAL (!robotCopy, 0);
+
+  // Create dynamic robot by assignment.
+  humanoidDynamicRobot_t robotAssigned = *robotDynCast;
 }

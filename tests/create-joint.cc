@@ -53,4 +53,7 @@ BOOST_AUTO_TEST_CASE (create_joint)
   ardJointShPtr_t jointRotationCopy (new joint_t (*jointRotationDynCast));
 
   BOOST_CHECK_EQUAL (!jointRotationCopy, 0);
+
+  // Create joint by assignment.
+  joint_t jointRotationAssigned = *jointRotationDynCast;
 }

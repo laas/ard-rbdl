@@ -61,4 +61,7 @@ BOOST_AUTO_TEST_CASE (create_foot)
   ardFootShPtr_t footCopy (new foot_t (*footDynCast));
 
   BOOST_CHECK_EQUAL (!footCopy, 0);
+
+  // Create foot by assignment.
+  foot_t footAssigned = *footDynCast;
 }

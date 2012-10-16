@@ -48,4 +48,7 @@ BOOST_AUTO_TEST_CASE (create_dynamic_robot)
   ardDynamicRobotShPtr_t robotCopy (new dynamicRobot_t (*robotDynCast));
 
   BOOST_CHECK_EQUAL (!robotCopy, 0);
+
+  // Create dynamic robot by assignment.
+  dynamicRobot_t robotAssigned = *robotDynCast;
 }
