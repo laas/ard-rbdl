@@ -21,7 +21,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/output_test_stream.hpp>
 
-#include <ard/rbdl/tools/util.hh>
+#include <ard/rbdl/tools/pointer-util.hh>
 #include <ard/rbdl/model/humanoid-dynamic-robot.hh>
 #include <ard/rbdl/model/robot-dynamics-object-factory.hh>
 

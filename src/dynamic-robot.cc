@@ -23,7 +23,7 @@
 
 #include <boost/foreach.hpp>
 
-#include <ard/rbdl/tools/util.hh>
+#include <ard/rbdl/tools/pointer-util.hh>
 #include <ard/rbdl/model/dynamic-robot.hh>
 
 namespace ard

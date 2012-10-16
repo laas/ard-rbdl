@@ -18,8 +18,8 @@
 
 /// \brief Declarations of utility functions.
 
-#ifndef ARD_RBDL_UTIL_HH
-# define ARD_RBDL_UTIL_HH
+#ifndef ARD_RBDL_POINTER_UTIL_HH
+# define ARD_RBDL_POINTER_UTIL_HH
 
 # include <boost/foreach.hpp>
 
@@ -93,4 +93,4 @@ namespace ard
   } // end of namespace rbdl.
 } // end of namespace ard.
   
-#endif //! ARD_RBDL_UTIL_HH
+#endif //! ARD_RBDL_POINTER_UTIL_HH

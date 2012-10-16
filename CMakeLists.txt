@@ -17,7 +17,7 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/ard/rbdl/tools/fwd.hh
   include/ard/rbdl/tools/types.hh
-  include/ard/rbdl/tools/util.hh
+  include/ard/rbdl/tools/pointer-util.hh
   )
 
 SET(${PROJECT_NAME}_MODEL_HEADERS
