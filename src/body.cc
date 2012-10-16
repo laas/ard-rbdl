@@ -55,11 +55,8 @@ namespace ard
     {
       name_ = body.getName ();
       rbdlBody_ = body.rbdlBody ();
+      body.joint (joint_);
 
-      if (body.joint ())
-	  getPtrFromBase (joint_, body.joint ());
-      else
-	joint_.reset ();
     }
 
     Body::~Body ()
@@ -127,5 +124,10 @@ namespace ard
       return getSharedPointer (joint_);
     }
 
+    void Body::joint (jointWkPtr_t& joint) const
+    {
+      joint = joint_;
+    }
+  
   } // end of namespace rbdl.
 } // end of namespace ard.

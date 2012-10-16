@@ -95,6 +95,11 @@ namespace ard
       /// getter. There is therefore no guarantee that the joint will
       /// still exist once the shared pointer has been deleted.
       virtual to_pointer<const CjrlJoint>::type joint () const;
+
+    protected:
+      /// \brief Get const pointer to the joint the body is attached
+      /// to.
+      virtual void joint (jointWkPtr_t& joint) const;
 	
     private:
       /// \brief Name attribute.
