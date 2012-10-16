@@ -56,4 +56,7 @@ BOOST_AUTO_TEST_CASE (create_joint)
 
   // Create joint by assignment.
   joint_t jointRotationAssigned = *jointRotationDynCast;
+
+  // Check self-assignment.
+  jointRotationAssigned = jointRotationAssigned;
 }

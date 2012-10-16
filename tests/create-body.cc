@@ -56,4 +56,7 @@ BOOST_AUTO_TEST_CASE (create_body)
 
   // Create body by assignment.
   body_t bodyAssigned = *bodyDynCast;
+
+  // Check self-assignment.
+  bodyAssigned = bodyAssigned;
 }

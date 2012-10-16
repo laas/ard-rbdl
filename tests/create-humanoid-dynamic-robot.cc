@@ -52,4 +52,7 @@ BOOST_AUTO_TEST_CASE (create_humanoid_dynamic_robot)
 
   // Create dynamic robot by assignment.
   humanoidDynamicRobot_t robotAssigned = *robotDynCast;
+
+  // Check self-assignment.
+  robotAssigned = robotAssigned;
 }

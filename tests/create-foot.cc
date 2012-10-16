@@ -64,4 +64,7 @@ BOOST_AUTO_TEST_CASE (create_foot)
 
   // Create foot by assignment.
   foot_t footAssigned = *footDynCast;
+
+  // Check self-assignment.
+  footAssigned = footAssigned;
 }

@@ -64,4 +64,7 @@ BOOST_AUTO_TEST_CASE (create_hand)
 
   // Create hand by assignment.
   hand_t handAssigned = *handDynCast;
+
+  // Check self-assignment.
+  handAssigned = handAssigned;
 }
