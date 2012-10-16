@@ -62,11 +62,7 @@ namespace ard
     Hand::Hand (const Hand& hand) :
       boost::enable_shared_from_this<Hand> ()
     {
-      if (hand.associatedWrist ())
-	getPtrFromBase (wristJoint_, hand.associatedWrist ());
-      else
-	wristJoint_.reset ();
-
+      hand.associatedWrist (wristJoint_);
       hand.getCenter (center_);
       hand.getThumbAxis (thumbAxis_);
       hand.getForeFingerAxis (foreFingerAxis_);
@@ -125,6 +121,11 @@ namespace ard
     void Hand::setPalmNormal (const vector3d& palmNormal)
     {
       palmNormal_ = palmNormal;
+    }
+
+    void Hand::associatedWrist (jointWkPtr_t& wrist) const
+    {
+      wrist = wristJoint_;
     }
 
   } // end of namespace rbdl.

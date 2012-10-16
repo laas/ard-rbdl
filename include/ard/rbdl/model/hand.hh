@@ -112,6 +112,10 @@ namespace ard
       /// wrist.
       virtual void setPalmNormal (const vector3d& inPalmNormal);
 
+    protected:
+      /// \brief Get the wrist joint to which the hand is attached.
+      virtual void associatedWrist (jointWkPtr_t& wrist) const;
+
     private:
       // Associated wrist joint attribute.
       jointWkPtr_t wristJoint_;
