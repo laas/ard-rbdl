@@ -24,6 +24,7 @@
 #include <boost/foreach.hpp>
 
 #include <ard/rbdl/tools/pointer-util.hh>
+#include <ard/rbdl/tools/math-util.hh>
 #include <ard/rbdl/model/dynamic-robot.hh>
 
 namespace ard
@@ -69,7 +70,7 @@ namespace ard
       acceleration_ = robot.currentAcceleration ();
       forces_ = robot.currentForces ();
       torques_ = robot.currentTorques ();
-      jointTorques_ = matrixNxP (robot.currentJointTorques ());
+      jointTorques_ = robot.currentJointTorques ();
       positionCenterOfMass_ = robot.positionCenterOfMass ();
       velocityCenterOfMass_ = robot.velocityCenterOfMass ();
       accelerationCenterOfMass_ = robot.accelerationCenterOfMass ();
@@ -90,7 +91,7 @@ namespace ard
       acceleration_ = robot.currentAcceleration ();
       forces_ = robot.currentForces ();
       torques_ = robot.currentTorques ();
-      jointTorques_ = matrixNxP (robot.currentJointTorques ());
+      jointTorques_ = robot.currentJointTorques ();
       positionCenterOfMass_ = robot.positionCenterOfMass ();
       velocityCenterOfMass_ = robot.velocityCenterOfMass ();
       accelerationCenterOfMass_ = robot.accelerationCenterOfMass ();
@@ -112,7 +113,7 @@ namespace ard
       // Initialize rbdl model. This method is called before building
       // the model.
       rbdlModel_.Init ();
-      rbdlModel_.gravity = gravity;
+      toRbdlFromMal (rbdlModel_.gravity, gravity);
 
       // Build rbdl model.
       if (!buildRbdlModel ())
@@ -469,12 +470,14 @@ namespace ard
 		= rbdlModel_.GetBodyId (parentBodyName.c_str ());
 
 	      // Compute parent joint transformation in joint frame.
-	      matrix4d world_T_joint = joint->initialPosition ();
-	      matrix4d world_T_pJoint = parentJoint->initialPosition ();
-	      matrix4d joint_T_world = world_T_joint.inverse ();
-	      matrix4d joint_T_pJoint = joint_T_world * world_T_pJoint;
-	      matrix3d E = joint_T_pJoint.block<3,3> (0,0);
-	      vector3d r = - joint_T_pJoint.block<3,1> (0,3);
+	      rbdlMatrix4d_t world_T_joint
+		= toRbdlFromMal (joint->initialPosition ());
+	      rbdlMatrix4d_t world_T_pJoint
+		= toRbdlFromMal (parentJoint->initialPosition ());
+	      rbdlMatrix4d_t joint_T_world = world_T_joint.inverse ();
+	      rbdlMatrix4d_t joint_T_pJoint = joint_T_world * world_T_pJoint;
+	      rbdlMatrix3d_t E = joint_T_pJoint.block<3,3> (0,0);
+	      rbdlVector3d_t r = - joint_T_pJoint.block<3,1> (0,3);
 	      rbdlSpatialTransform_t joint_X_pjoint (E, r);
 
 	      // Retrieve rbdl body.

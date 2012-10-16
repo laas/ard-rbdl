@@ -26,14 +26,17 @@
 
 # include <rbdl/rbdl.h>
 
-// Math typedefs.
-typedef RigidBodyDynamics::Math::Vector3d vector3d;
-typedef RigidBodyDynamics::Math::Matrix3d matrix3d;
-typedef Eigen::Matrix<double, 4, 4> matrix4d;
-typedef RigidBodyDynamics::Math::VectorNd vectorN;
-typedef RigidBodyDynamics::Math::MatrixNd matrixNxP;
-typedef RigidBodyDynamics::Math::SpatialTransform rbdlSpatialTransform_t;
-typedef RigidBodyDynamics::Math::SpatialVector rbdlSpatialVector_t;
+# include <jrl/mathtools/vector3.hh>
+# include <jrl/mathtools/matrix3x3.hh>
+# include <jrl/mathtools/matrix4x4.hh>
+# include <boost/numeric/ublas/vector.hpp>
+# include <boost/numeric/ublas/matrix.hpp>
+
+typedef jrlMathTools::Vector3D<double> vector3d;
+typedef jrlMathTools::Matrix3x3<double> matrix3d;
+typedef jrlMathTools::Matrix4x4<double> matrix4d;
+typedef boost::numeric::ublas::vector<double> vectorN;
+typedef boost::numeric::ublas::matrix<double> matrixNxP;
 
 # include <abstract-robot-dynamics/traits/shared-pointer.hh>
 # include <abstract-robot-dynamics/abstract-robot-dynamics.hh>
@@ -51,6 +54,15 @@ namespace ard
     ARD_RBDL_DEFINE_TYPES (RigidBodyDynamics::Joint, rbdlJoint);
     ARD_RBDL_DEFINE_TYPES (RigidBodyDynamics::Body, rbdlBody);
     ARD_RBDL_DEFINE_TYPES (RigidBodyDynamics::Model, rbdlModel);
+
+    // RBDL Math typedefs.
+    typedef RigidBodyDynamics::Math::Vector3d rbdlVector3d_t;
+    typedef RigidBodyDynamics::Math::Matrix3d rbdlMatrix3d_t;
+    typedef Eigen::Matrix<double, 4, 4> rbdlMatrix4d_t;
+    typedef RigidBodyDynamics::Math::VectorNd rbdlVectorN_t;
+    typedef RigidBodyDynamics::Math::MatrixNd rbdlMatrixNxP_t;
+    typedef RigidBodyDynamics::Math::SpatialTransform rbdlSpatialTransform_t;
+    typedef RigidBodyDynamics::Math::SpatialVector rbdlSpatialVector_t;
     
     // Abstract robot dynamics typedefs.
     ARD_RBDL_DEFINE_TYPES (CjrlJoint, ardJoint);

@@ -17,6 +17,7 @@ MACRO(ADD_TESTCASE NAME)
   ADD_TEST(${NAME} ${RUNTIME_OUTPUT_DIRECTORY}/${NAME})
 
   PKG_CONFIG_USE_DEPENDENCY(${NAME} abstract-robot-dynamics)
+  PKG_CONFIG_USE_DEPENDENCY(${NAME} jrl-mal)
   ROSPACK_USE_DEPENDENCY(${NAME} rbdl)
 
   # Link against package library.

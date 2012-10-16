@@ -23,6 +23,7 @@
 #include <stdexcept>
 
 #include <ard/rbdl/tools/pointer-util.hh>
+#include <ard/rbdl/tools/math-util.hh>
 #include <ard/rbdl/model/body.hh>
 
 namespace ard
@@ -43,9 +44,12 @@ namespace ard
 		joint_t& joint) : 
       boost::enable_shared_from_this<Body> (),
       name_ (),
-      rbdlBody_ (mass, com, inertia),
+      rbdlBody_ (),
       joint_ ()
     {
+      rbdlBody_ = rbdlBody_t (mass,
+			      toRbdlFromMal (com),
+			      toRbdlFromMal (inertia));
       jointShPtr_t shPtr = joint.shared_from_this ();
       joint_ = jointWkPtr_t (shPtr);
     }
@@ -88,7 +92,7 @@ namespace ard
 
     const vector3d& Body::localCenterOfMass () const
     {
-      return rbdlBody_.mCenterOfMass;
+      return toMalFromRbdl (rbdlBody_.mCenterOfMass);
     }
 
     void Body::localCenterOfMass (const vector3d& localCenterOfMass)
@@ -111,7 +115,7 @@ namespace ard
       // Recreate rbdl body as spatial inertia will be modified.
       rbdlBody_ = rbdlBody_t (rbdlBody_.mMass,
 			      rbdlBody_.mCenterOfMass,
-			      inertiaMatrix);
+			      toRbdlFromMal (inertiaMatrix));
     }
 
     double Body::mass () const

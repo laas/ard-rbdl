@@ -18,6 +18,7 @@ SET(${PROJECT_NAME}_TOOLS_HEADERS
   include/ard/rbdl/tools/fwd.hh
   include/ard/rbdl/tools/types.hh
   include/ard/rbdl/tools/pointer-util.hh
+  include/ard/rbdl/tools/math-util.hh
   )
 
 SET(${PROJECT_NAME}_MODEL_HEADERS
@@ -43,6 +44,7 @@ SETUP_PROJECT()
 # Declare dependencies
 SEARCH_FOR_BOOST()
 ADD_REQUIRED_DEPENDENCY("abstract-robot-dynamics")
+ADD_REQUIRED_DEPENDENCY("jrl-mal")
 ADD_ROSPACK_DEPENDENCY("rbdl")
 
 PKG_CONFIG_APPEND_LIBS(${PROJECT_NAME})

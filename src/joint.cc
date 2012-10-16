@@ -83,13 +83,13 @@ namespace ard
 	case JOINT_TYPE_REVOLUTE:
 	  {
 	    rbdlJoint_ = rbdlJoint_t (RigidBodyDynamics::JointTypeRevolute,
-				      vector3d (1, 0, 0));
+				      rbdlVector3d_t (1, 0, 0));
 	    break;
 	  }
 	case JOINT_TYPE_PRISMATIC:
 	  {
 	    rbdlJoint_ = rbdlJoint_t (RigidBodyDynamics::JointTypePrismatic,
-				      vector3d (1, 0, 0));
+				      rbdlVector3d_t (1, 0, 0));
 	    break;
 	  }
 	case JOINT_TYPE_FREEFLYER:
