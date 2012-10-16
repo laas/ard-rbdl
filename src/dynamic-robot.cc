@@ -61,11 +61,7 @@ namespace ard
     DynamicRobot::DynamicRobot (const DynamicRobot& robot) :
       boost::enable_shared_from_this<DynamicRobot> ()
     {
-      if (robot.rootJoint ())
-	getPtrFromBase (rootJoint_, robot.rootJoint ());
-      else
-	rootJoint_.reset ();
-
+      robot.rootJoint (rootJoint_);
       robot.jointVector (jointVector_);
       rbdlModel_ = robot.rbdlModel ();
       configuration_ = robot.currentConfiguration ();
@@ -482,6 +478,11 @@ namespace ard
 	}
 
       return true;
+    }
+
+    void DynamicRobot::rootJoint (jointShPtr_t& joint) const
+    {
+      joint = rootJoint_;
     }
 
     void DynamicRobot::rootJoint (joint_t& joint)

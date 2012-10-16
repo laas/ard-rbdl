@@ -333,6 +333,9 @@ namespace ard
       /// \retval true if success, false if failure
       virtual bool buildRbdlModel ();
 
+      /// \brief Get the root joint of the robot.
+      virtual void rootJoint (jointShPtr_t& joint) const;
+
       /// \brief Set the root joint of the robot.
       virtual void rootJoint (joint_t& joint);
 
